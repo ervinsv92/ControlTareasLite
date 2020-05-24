@@ -193,7 +193,6 @@ namespace ControlTareas
                 }
             }
         }
-
         private void txtNumeroTarea_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -470,6 +469,7 @@ namespace ControlTareas
                     gridTareas.Rows.RemoveAt(filaActual);
                     ListaTareas.RemoveAt(filaActual);
                     LimpiarTarea();
+                    lblCantidad.Text = gridTareas.Rows.Count.ToString();
                 }
             }
         }
