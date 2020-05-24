@@ -45,9 +45,7 @@
             this.lblFechaInicio = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.gridFuentes = new System.Windows.Forms.DataGridView();
-            this.Fuentes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gridCheckIn = new System.Windows.Forms.DataGridView();
-            this.CheckIn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmbEstado = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtDesciprcionCargada = new System.Windows.Forms.TextBox();
@@ -55,8 +53,6 @@
             this.txtTareaCargada = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.gridTareas = new System.Windows.Forms.DataGridView();
-            this.Tarea = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmbSprint = new System.Windows.Forms.ComboBox();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -69,6 +65,13 @@
             this.label14 = new System.Windows.Forms.Label();
             this.lblCantidad = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.rtbNotas = new System.Windows.Forms.RichTextBox();
+            this.btnGuardarNota = new System.Windows.Forms.Button();
+            this.CheckIn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fuentes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tarea = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridFuentes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCheckIn)).BeginInit();
@@ -77,6 +80,9 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnGuardarNota);
+            this.panel1.Controls.Add(this.rtbNotas);
+            this.panel1.Controls.Add(this.label17);
             this.panel1.Controls.Add(this.label16);
             this.panel1.Controls.Add(this.cmbFuentes);
             this.panel1.Controls.Add(this.label13);
@@ -118,7 +124,7 @@
             // 
             this.cmbFuentes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbFuentes.FormattingEnabled = true;
-            this.cmbFuentes.Location = new System.Drawing.Point(221, 259);
+            this.cmbFuentes.Location = new System.Drawing.Point(221, 309);
             this.cmbFuentes.Name = "cmbFuentes";
             this.cmbFuentes.Size = new System.Drawing.Size(322, 24);
             this.cmbFuentes.TabIndex = 14;
@@ -130,7 +136,7 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(218, 239);
+            this.label13.Location = new System.Drawing.Point(218, 289);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(59, 17);
             this.label13.TabIndex = 26;
@@ -139,7 +145,7 @@
             // txtCheckIn
             // 
             this.txtCheckIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCheckIn.Location = new System.Drawing.Point(6, 260);
+            this.txtCheckIn.Location = new System.Drawing.Point(6, 310);
             this.txtCheckIn.Name = "txtCheckIn";
             this.txtCheckIn.Size = new System.Drawing.Size(209, 23);
             this.txtCheckIn.TabIndex = 25;
@@ -151,7 +157,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(3, 239);
+            this.label12.Location = new System.Drawing.Point(3, 289);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(62, 17);
             this.label12.TabIndex = 24;
@@ -206,7 +212,7 @@
             this.lblFechaFin.AutoSize = true;
             this.lblFechaFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFechaFin.ForeColor = System.Drawing.Color.White;
-            this.lblFechaFin.Location = new System.Drawing.Point(90, 206);
+            this.lblFechaFin.Location = new System.Drawing.Point(218, 154);
             this.lblFechaFin.Name = "lblFechaFin";
             this.lblFechaFin.Size = new System.Drawing.Size(80, 17);
             this.lblFechaFin.TabIndex = 18;
@@ -218,7 +224,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(3, 206);
+            this.label8.Location = new System.Drawing.Point(144, 154);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(78, 17);
             this.label8.TabIndex = 17;
@@ -229,7 +235,7 @@
             this.lblFechaInicio.AutoSize = true;
             this.lblFechaInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFechaInicio.ForeColor = System.Drawing.Color.White;
-            this.lblFechaInicio.Location = new System.Drawing.Point(90, 179);
+            this.lblFechaInicio.Location = new System.Drawing.Point(218, 129);
             this.lblFechaInicio.Name = "lblFechaInicio";
             this.lblFechaInicio.Size = new System.Drawing.Size(80, 17);
             this.lblFechaInicio.TabIndex = 16;
@@ -241,7 +247,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(3, 179);
+            this.label6.Location = new System.Drawing.Point(131, 129);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(91, 17);
             this.label6.TabIndex = 15;
@@ -257,22 +263,15 @@
             this.gridFuentes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridFuentes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Fuentes});
-            this.gridFuentes.Location = new System.Drawing.Point(221, 289);
+            this.gridFuentes.Location = new System.Drawing.Point(221, 342);
             this.gridFuentes.MultiSelect = false;
             this.gridFuentes.Name = "gridFuentes";
             this.gridFuentes.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.gridFuentes.Size = new System.Drawing.Size(323, 240);
+            this.gridFuentes.Size = new System.Drawing.Size(323, 187);
             this.gridFuentes.TabIndex = 14;
             this.ttControles.SetToolTip(this.gridFuentes, "Se puede editar desde el grid");
             this.gridFuentes.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridFuentes_CellEndEdit);
             this.gridFuentes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridFuentes_KeyDown);
-            // 
-            // Fuentes
-            // 
-            this.Fuentes.HeaderText = "Fuentes";
-            this.Fuentes.Name = "Fuentes";
-            this.Fuentes.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Fuentes.Width = 275;
             // 
             // gridCheckIn
             // 
@@ -284,30 +283,24 @@
             this.gridCheckIn.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridCheckIn.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CheckIn});
-            this.gridCheckIn.Location = new System.Drawing.Point(6, 289);
+            this.gridCheckIn.Location = new System.Drawing.Point(6, 342);
             this.gridCheckIn.MultiSelect = false;
             this.gridCheckIn.Name = "gridCheckIn";
             this.gridCheckIn.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.gridCheckIn.Size = new System.Drawing.Size(209, 240);
+            this.gridCheckIn.Size = new System.Drawing.Size(209, 187);
             this.gridCheckIn.TabIndex = 8;
             this.ttControles.SetToolTip(this.gridCheckIn, "Se puede editar desde el grid");
             this.gridCheckIn.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridCheckIn_CellEndEdit);
             this.gridCheckIn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridCheckIn_KeyDown);
             // 
-            // CheckIn
-            // 
-            this.CheckIn.HeaderText = "Check In";
-            this.CheckIn.Name = "CheckIn";
-            this.CheckIn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CheckIn.Width = 160;
-            // 
             // cmbEstado
             // 
             this.cmbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbEstado.FormattingEnabled = true;
             this.cmbEstado.Location = new System.Drawing.Point(6, 143);
             this.cmbEstado.Name = "cmbEstado";
-            this.cmbEstado.Size = new System.Drawing.Size(121, 21);
+            this.cmbEstado.Size = new System.Drawing.Size(121, 24);
             this.cmbEstado.TabIndex = 12;
             this.ttControles.SetToolTip(this.cmbEstado, "Al cambiar se modifica en BD junto con las fechas de inicio y fin");
             this.cmbEstado.SelectedIndexChanged += new System.EventHandler(this.cmbEstado_SelectedIndexChanged);
@@ -387,20 +380,6 @@
             this.gridTareas.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridTareas_CellEndEdit);
             this.gridTareas.CurrentCellChanged += new System.EventHandler(this.gridTareas_CurrentCellChanged);
             this.gridTareas.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridTareas_KeyDown);
-            // 
-            // Tarea
-            // 
-            this.Tarea.HeaderText = "Tarea";
-            this.Tarea.Name = "Tarea";
-            this.Tarea.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Tarea.Width = 90;
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.HeaderText = "Descripción";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Descripcion.Width = 470;
             // 
             // cmbSprint
             // 
@@ -526,6 +505,66 @@
             this.label15.TabIndex = 14;
             this.label15.Text = "F1: Sprint y Funtes";
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.White;
+            this.label17.Location = new System.Drawing.Point(4, 176);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(45, 17);
+            this.label17.TabIndex = 27;
+            this.label17.Text = "Notas";
+            // 
+            // rtbNotas
+            // 
+            this.rtbNotas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtbNotas.Location = new System.Drawing.Point(7, 197);
+            this.rtbNotas.Name = "rtbNotas";
+            this.rtbNotas.Size = new System.Drawing.Size(470, 82);
+            this.rtbNotas.TabIndex = 28;
+            this.rtbNotas.Text = "";
+            // 
+            // btnGuardarNota
+            // 
+            this.btnGuardarNota.BackColor = System.Drawing.Color.DimGray;
+            this.btnGuardarNota.ForeColor = System.Drawing.Color.White;
+            this.btnGuardarNota.Location = new System.Drawing.Point(483, 197);
+            this.btnGuardarNota.Name = "btnGuardarNota";
+            this.btnGuardarNota.Size = new System.Drawing.Size(60, 82);
+            this.btnGuardarNota.TabIndex = 29;
+            this.btnGuardarNota.Text = "Guardar Nota";
+            this.btnGuardarNota.UseVisualStyleBackColor = false;
+            this.btnGuardarNota.Click += new System.EventHandler(this.btnGuardarNota_Click);
+            // 
+            // CheckIn
+            // 
+            this.CheckIn.HeaderText = "Check In";
+            this.CheckIn.Name = "CheckIn";
+            this.CheckIn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.CheckIn.Width = 145;
+            // 
+            // Fuentes
+            // 
+            this.Fuentes.HeaderText = "Fuentes";
+            this.Fuentes.Name = "Fuentes";
+            this.Fuentes.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Fuentes.Width = 260;
+            // 
+            // Tarea
+            // 
+            this.Tarea.HeaderText = "Tarea";
+            this.Tarea.Name = "Tarea";
+            this.Tarea.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Tarea.Width = 90;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.HeaderText = "Descripción";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Descripcion.Width = 455;
+            // 
             // ControlTareasFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -595,16 +634,19 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtCheckIn;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CheckIn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Fuentes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Tarea;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.ToolTip ttControles;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label lblCantidad;
         private System.Windows.Forms.ComboBox cmbFuentes;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.RichTextBox rtbNotas;
+        private System.Windows.Forms.Button btnGuardarNota;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Fuentes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CheckIn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Tarea;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
     }
 }
 

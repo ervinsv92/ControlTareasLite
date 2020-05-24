@@ -226,7 +226,6 @@ namespace ControlTareas
                         dbHelper.RegistrarTarea(tarea);
                         LlenarGridTareas(Int32.Parse(cmbSprint.SelectedValue.ToString()));
                         LimpiarCampos();
-                        gridTareas.Rows[gridTareas.Rows.Count - 1].Cells[0].Selected = true;
                     }
                     else
                     {
@@ -274,7 +273,6 @@ namespace ControlTareas
                         dbHelper.RegistrarTarea(tarea);
                         LlenarGridTareas(Int32.Parse(cmbSprint.SelectedValue.ToString()));
                         LimpiarCampos();
-                        gridTareas.Rows[gridTareas.Rows.Count - 1].Cells[0].Selected = true;
                     }
                     else
                     {
@@ -298,6 +296,7 @@ namespace ControlTareas
             txtDesciprcionCargada.Text = _Tarea.Descripcion;
             cmbSprintCargado.SelectedValue = _Tarea.Sprint;
             txtEstimado.Text = _Tarea.Estimado.ToString();
+            rtbNotas.Text = _Tarea.Notas;
             cmbEstado.SelectedValue = _Tarea.Estado;
             lblFechaInicio.Text = _Tarea.FechaInicio.ToShortDateString() + " " + _Tarea.FechaInicio.ToShortTimeString();
             lblFechaFin.Text = _Tarea.FechaFin.ToShortDateString() + " " + _Tarea.FechaFin.ToShortTimeString();
@@ -657,6 +656,16 @@ namespace ControlTareas
                     LlenarComboFuentes();
                     LlenarComboSprint();
                 }
+            }
+        }
+
+        private void btnGuardarNota_Click(object sender, EventArgs e)
+        {
+            if (_Tarea != null) {
+                _Tarea.Notas = rtbNotas.Text.Trim();
+                dbHelper.ActualizarTarea(_Tarea);
+                ListaTareas[ListaTareas.FindLastIndex(x => x.Id == _Tarea.Id)] = _Tarea;
+                txtCheckIn.Focus();
             }
         }
     }

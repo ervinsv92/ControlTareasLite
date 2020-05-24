@@ -10,15 +10,13 @@ namespace ControlTareas
    
     public class DBHelper
     {
-        LiteRepository db;
+        //LiteRepository db;
 
-        public DBHelper()
-        {
-            string path = System.IO.Path.GetDirectoryName(
-      System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).Replace("file:\\", "");
-
-            //dbBase = new 
-        }
+      //  public DBHelper()
+      //  {
+      //      string path = System.IO.Path.GetDirectoryName(
+      //System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).Replace("file:\\", "");
+      //  }
 
         private LiteRepository GetConexion() {
             return new LiteRepository("ControlTareas.db");
@@ -74,7 +72,7 @@ namespace ControlTareas
             List<TareaModel> Lista = null;
             using (var db = GetConexion())
             {
-                Lista = db.Query<TareaModel>().Where(x => x.Sprint == NumeroSprint).OrderBy(x => x.FechaRegistro).ToList();
+                Lista = db.Query<TareaModel>().Where(x => x.Sprint == NumeroSprint).OrderByDescending(x => x.FechaRegistro).ToList();
             }
 
             return Lista;
@@ -125,7 +123,7 @@ namespace ControlTareas
 
             using (var db = GetConexion())
             {
-                Lista = db.Query<FuentesModel>().ToList();
+                Lista = db.Query<FuentesModel>().OrderBy(x => x.Fuente).ToList();
             }
 
             return Lista;

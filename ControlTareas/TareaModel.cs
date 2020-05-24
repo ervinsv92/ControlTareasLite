@@ -19,6 +19,7 @@ namespace ControlTareas
         public DateTime FechaRegistro { get; set; }
         public List<string> ListaCheckIn { get; set; }
         public List<string> ListaFuentes { get; set; }
+        public string Notas { get; set; }
 
         public TareaModel() {
             this.FechaRegistro = DateTime.Now;
