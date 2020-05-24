@@ -31,6 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlTareasFrm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnGuardarNota = new System.Windows.Forms.Button();
+            this.rtbNotas = new System.Windows.Forms.RichTextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.cmbFuentes = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -45,7 +48,9 @@
             this.lblFechaInicio = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.gridFuentes = new System.Windows.Forms.DataGridView();
+            this.Fuentes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gridCheckIn = new System.Windows.Forms.DataGridView();
+            this.CheckIn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmbEstado = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtDesciprcionCargada = new System.Windows.Forms.TextBox();
@@ -53,6 +58,8 @@
             this.txtTareaCargada = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.gridTareas = new System.Windows.Forms.DataGridView();
+            this.Tarea = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmbSprint = new System.Windows.Forms.ComboBox();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -65,13 +72,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.lblCantidad = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.rtbNotas = new System.Windows.Forms.RichTextBox();
-            this.btnGuardarNota = new System.Windows.Forms.Button();
-            this.CheckIn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fuentes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tarea = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridFuentes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCheckIn)).BeginInit();
@@ -108,6 +108,38 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(552, 552);
             this.panel1.TabIndex = 0;
+            // 
+            // btnGuardarNota
+            // 
+            this.btnGuardarNota.BackColor = System.Drawing.Color.DimGray;
+            this.btnGuardarNota.ForeColor = System.Drawing.Color.White;
+            this.btnGuardarNota.Location = new System.Drawing.Point(483, 197);
+            this.btnGuardarNota.Name = "btnGuardarNota";
+            this.btnGuardarNota.Size = new System.Drawing.Size(60, 82);
+            this.btnGuardarNota.TabIndex = 29;
+            this.btnGuardarNota.Text = "Guardar Nota";
+            this.btnGuardarNota.UseVisualStyleBackColor = false;
+            this.btnGuardarNota.Click += new System.EventHandler(this.btnGuardarNota_Click);
+            // 
+            // rtbNotas
+            // 
+            this.rtbNotas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtbNotas.Location = new System.Drawing.Point(7, 197);
+            this.rtbNotas.Name = "rtbNotas";
+            this.rtbNotas.Size = new System.Drawing.Size(470, 82);
+            this.rtbNotas.TabIndex = 28;
+            this.rtbNotas.Text = "";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.White;
+            this.label17.Location = new System.Drawing.Point(4, 176);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(45, 17);
+            this.label17.TabIndex = 27;
+            this.label17.Text = "Notas";
             // 
             // label16
             // 
@@ -212,7 +244,7 @@
             this.lblFechaFin.AutoSize = true;
             this.lblFechaFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFechaFin.ForeColor = System.Drawing.Color.White;
-            this.lblFechaFin.Location = new System.Drawing.Point(218, 154);
+            this.lblFechaFin.Location = new System.Drawing.Point(350, 145);
             this.lblFechaFin.Name = "lblFechaFin";
             this.lblFechaFin.Size = new System.Drawing.Size(80, 17);
             this.lblFechaFin.TabIndex = 18;
@@ -224,18 +256,18 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(144, 154);
+            this.label8.Location = new System.Drawing.Point(319, 145);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(78, 17);
+            this.label8.Size = new System.Drawing.Size(35, 17);
             this.label8.TabIndex = 17;
-            this.label8.Text = "Fecha Fin: ";
+            this.label8.Text = "Fin: ";
             // 
             // lblFechaInicio
             // 
             this.lblFechaInicio.AutoSize = true;
             this.lblFechaInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFechaInicio.ForeColor = System.Drawing.Color.White;
-            this.lblFechaInicio.Location = new System.Drawing.Point(218, 129);
+            this.lblFechaInicio.Location = new System.Drawing.Point(175, 146);
             this.lblFechaInicio.Name = "lblFechaInicio";
             this.lblFechaInicio.Size = new System.Drawing.Size(80, 17);
             this.lblFechaInicio.TabIndex = 16;
@@ -247,11 +279,11 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(131, 129);
+            this.label6.Location = new System.Drawing.Point(131, 146);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(91, 17);
+            this.label6.Size = new System.Drawing.Size(48, 17);
             this.label6.TabIndex = 15;
-            this.label6.Text = "Fecha Inicio: ";
+            this.label6.Text = "Inicio: ";
             // 
             // gridFuentes
             // 
@@ -273,6 +305,13 @@
             this.gridFuentes.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridFuentes_CellEndEdit);
             this.gridFuentes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridFuentes_KeyDown);
             // 
+            // Fuentes
+            // 
+            this.Fuentes.HeaderText = "Fuentes";
+            this.Fuentes.Name = "Fuentes";
+            this.Fuentes.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Fuentes.Width = 260;
+            // 
             // gridCheckIn
             // 
             this.gridCheckIn.AllowUserToAddRows = false;
@@ -292,6 +331,13 @@
             this.ttControles.SetToolTip(this.gridCheckIn, "Se puede editar desde el grid");
             this.gridCheckIn.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridCheckIn_CellEndEdit);
             this.gridCheckIn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridCheckIn_KeyDown);
+            // 
+            // CheckIn
+            // 
+            this.CheckIn.HeaderText = "Check In";
+            this.CheckIn.Name = "CheckIn";
+            this.CheckIn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.CheckIn.Width = 145;
             // 
             // cmbEstado
             // 
@@ -380,6 +426,20 @@
             this.gridTareas.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridTareas_CellEndEdit);
             this.gridTareas.CurrentCellChanged += new System.EventHandler(this.gridTareas_CurrentCellChanged);
             this.gridTareas.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridTareas_KeyDown);
+            // 
+            // Tarea
+            // 
+            this.Tarea.HeaderText = "Tarea";
+            this.Tarea.Name = "Tarea";
+            this.Tarea.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Tarea.Width = 90;
+            // 
+            // Descripcion
+            // 
+            this.Descripcion.HeaderText = "Descripción";
+            this.Descripcion.Name = "Descripcion";
+            this.Descripcion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Descripcion.Width = 455;
             // 
             // cmbSprint
             // 
@@ -504,66 +564,6 @@
             this.label15.Size = new System.Drawing.Size(127, 17);
             this.label15.TabIndex = 14;
             this.label15.Text = "F1: Sprint y Funtes";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.ForeColor = System.Drawing.Color.White;
-            this.label17.Location = new System.Drawing.Point(4, 176);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(45, 17);
-            this.label17.TabIndex = 27;
-            this.label17.Text = "Notas";
-            // 
-            // rtbNotas
-            // 
-            this.rtbNotas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtbNotas.Location = new System.Drawing.Point(7, 197);
-            this.rtbNotas.Name = "rtbNotas";
-            this.rtbNotas.Size = new System.Drawing.Size(470, 82);
-            this.rtbNotas.TabIndex = 28;
-            this.rtbNotas.Text = "";
-            // 
-            // btnGuardarNota
-            // 
-            this.btnGuardarNota.BackColor = System.Drawing.Color.DimGray;
-            this.btnGuardarNota.ForeColor = System.Drawing.Color.White;
-            this.btnGuardarNota.Location = new System.Drawing.Point(483, 197);
-            this.btnGuardarNota.Name = "btnGuardarNota";
-            this.btnGuardarNota.Size = new System.Drawing.Size(60, 82);
-            this.btnGuardarNota.TabIndex = 29;
-            this.btnGuardarNota.Text = "Guardar Nota";
-            this.btnGuardarNota.UseVisualStyleBackColor = false;
-            this.btnGuardarNota.Click += new System.EventHandler(this.btnGuardarNota_Click);
-            // 
-            // CheckIn
-            // 
-            this.CheckIn.HeaderText = "Check In";
-            this.CheckIn.Name = "CheckIn";
-            this.CheckIn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CheckIn.Width = 145;
-            // 
-            // Fuentes
-            // 
-            this.Fuentes.HeaderText = "Fuentes";
-            this.Fuentes.Name = "Fuentes";
-            this.Fuentes.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Fuentes.Width = 260;
-            // 
-            // Tarea
-            // 
-            this.Tarea.HeaderText = "Tarea";
-            this.Tarea.Name = "Tarea";
-            this.Tarea.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Tarea.Width = 90;
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.HeaderText = "Descripción";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Descripcion.Width = 455;
             // 
             // ControlTareasFrm
             // 
