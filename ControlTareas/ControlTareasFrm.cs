@@ -482,6 +482,7 @@ namespace ControlTareas
                     ListaTareas.RemoveAt(filaActual);
                     LimpiarTarea();
                     lblCantidad.Text = gridTareas.Rows.Count.ToString();
+                    gridTareas.Rows[0].Cells[0].Selected = true;
                 }
             }
         }
