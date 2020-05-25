@@ -43,7 +43,7 @@ namespace ControlTareas
             Boolean existeTarea = false;
             using (var db = GetConexion())
             {
-                var Lista = db.Query<TareaModel>().Where(x => x.NumeroTarea == NumeroTarea && x.Id != ID).ToList();
+                var Lista = db.Query<TareaModel>().Where(x => x.NumeroTarea == NumeroTarea && x.Id != ID && x.NumeroTarea != "99999").ToList();
 
                 if (Lista.Count > 0) {
                     existeTarea = true;
@@ -91,7 +91,7 @@ namespace ControlTareas
             using (var db = GetConexion())
             {
                 var col = db.Database.GetCollection<TareaModel>("TareaModel");
-                Lista = col.Find(x => x.NumeroTarea.Contains(DatoBusqueda) || x.Descripcion.Contains(DatoBusqueda) || x.ListaCheckIn.Any(a => a.Contains(DatoBusqueda))  || x.Notas.Contains(DatoBusqueda)).ToList<TareaModel>();
+                Lista = col.Find(x => x.NumeroTarea.Contains(DatoBusqueda) || x.Descripcion.Contains(DatoBusqueda) || x.ListaCheckIn.Any(a => a.Contains(DatoBusqueda)) || x.Notas.Contains(DatoBusqueda)).ToList<TareaModel>();
             }
 
             return Lista;
