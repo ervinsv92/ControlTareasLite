@@ -64,12 +64,24 @@ namespace ControlTareas
                     gridTareas.Rows.Add();
                     gridTareas.Rows[gridTareas.Rows.Count - 1].Cells["Tarea"].Value = tarea.NumeroTarea;
                     gridTareas.Rows[gridTareas.Rows.Count - 1].Cells["Descripcion"].Value = tarea.Descripcion;
+
+                    PintarEstado(tarea.Estado, gridTareas.Rows.Count - 1);
                 }
                 lblCantidad.Text = gridTareas.Rows.Count.ToString();
             }
             catch (Exception ex)
             {
 
+            }
+        }
+
+        private void PintarEstado(int estado, int fila) {
+            if (estado == (int)EstadoTarea.Creada) {
+                gridTareas.Rows[fila].DefaultCellStyle.BackColor = Color.White;
+            } else if (estado == (int)EstadoTarea.Iniciada) {
+                gridTareas.Rows[fila].DefaultCellStyle.BackColor = Color.LightGreen;
+            } else if (estado == (int)EstadoTarea.Finalizada) {
+                gridTareas.Rows[fila].DefaultCellStyle.BackColor = Color.LightBlue;
             }
         }
 
@@ -425,6 +437,7 @@ namespace ControlTareas
 
                 dbHelper.ActualizarTarea(_Tarea);
                 ListaTareas[ListaTareas.FindLastIndex(x => x.Id == _Tarea.Id)] = _Tarea;
+                PintarEstado(_Tarea.Estado, ListaTareas.FindLastIndex(x => x.Id == _Tarea.Id));
                 CargarTarea();
             }
         }
