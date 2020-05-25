@@ -10,14 +10,6 @@ namespace ControlTareas
    
     public class DBHelper
     {
-        //LiteRepository db;
-
-      //  public DBHelper()
-      //  {
-      //      string path = System.IO.Path.GetDirectoryName(
-      //System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).Replace("file:\\", "");
-      //  }
-
         private LiteRepository GetConexion() {
             return new LiteRepository("ControlTareas.db");
         }
@@ -99,7 +91,7 @@ namespace ControlTareas
             using (var db = GetConexion())
             {
                 var col = db.Database.GetCollection<TareaModel>("TareaModel");
-                Lista = col.Find(x => x.NumeroTarea.Contains(DatoBusqueda) || x.Descripcion.Contains(DatoBusqueda) || x.ListaCheckIn.Any(a => a.Contains(DatoBusqueda))).ToList<TareaModel>();
+                Lista = col.Find(x => x.NumeroTarea.Contains(DatoBusqueda) || x.Descripcion.Contains(DatoBusqueda) || x.ListaCheckIn.Any(a => a.Contains(DatoBusqueda))  || x.Notas.Contains(DatoBusqueda)).ToList<TareaModel>();
             }
 
             return Lista;

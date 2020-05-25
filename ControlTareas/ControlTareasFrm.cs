@@ -238,6 +238,7 @@ namespace ControlTareas
                         dbHelper.RegistrarTarea(tarea);
                         LlenarGridTareas(Int32.Parse(cmbSprint.SelectedValue.ToString()));
                         LimpiarCampos();
+                        gridTareas.Focus();
                     }
                     else
                     {
@@ -285,6 +286,7 @@ namespace ControlTareas
                         dbHelper.RegistrarTarea(tarea);
                         LlenarGridTareas(Int32.Parse(cmbSprint.SelectedValue.ToString()));
                         LimpiarCampos();
+                        gridTareas.Focus();
                     }
                     else
                     {
@@ -482,7 +484,10 @@ namespace ControlTareas
                     ListaTareas.RemoveAt(filaActual);
                     LimpiarTarea();
                     lblCantidad.Text = gridTareas.Rows.Count.ToString();
-                    gridTareas.Rows[0].Cells[0].Selected = true;
+
+                    if (gridTareas.RowCount > 0) {
+                        gridTareas.Rows[0].Cells[0].Selected = true;
+                    }
                 }
             }
         }
@@ -617,18 +622,6 @@ namespace ControlTareas
             }
         }
 
-        private void gridTareas_CurrentCellChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                _Tarea = ListaTareas[gridTareas.CurrentCell.RowIndex];
-                CargarTarea();
-            }
-            catch (Exception)
-            {
-            }
-        }
-
         private void cmbFuentes_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -680,6 +673,18 @@ namespace ControlTareas
                 dbHelper.ActualizarTarea(_Tarea);
                 ListaTareas[ListaTareas.FindLastIndex(x => x.Id == _Tarea.Id)] = _Tarea;
                 txtCheckIn.Focus();
+            }
+        }
+
+        private void gridTareas_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                _Tarea = ListaTareas[gridTareas.CurrentCell.RowIndex];
+                CargarTarea();
+            }
+            catch (Exception)
+            {
             }
         }
     }

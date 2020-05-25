@@ -424,7 +424,7 @@
             this.gridTareas.TabIndex = 1;
             this.ttControles.SetToolTip(this.gridTareas, "Enter para editar tarea o descripción");
             this.gridTareas.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridTareas_CellEndEdit);
-            this.gridTareas.CurrentCellChanged += new System.EventHandler(this.gridTareas_CurrentCellChanged);
+            this.gridTareas.SelectionChanged += new System.EventHandler(this.gridTareas_SelectionChanged);
             this.gridTareas.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridTareas_KeyDown);
             // 
             // Tarea
