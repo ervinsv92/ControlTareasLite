@@ -91,7 +91,7 @@ namespace ControlTareas
             using (var db = GetConexion())
             {
                 var col = db.Database.GetCollection<TareaModel>("TareaModel");
-                Lista = col.Find(x => x.NumeroTarea.Contains(DatoBusqueda) || x.Descripcion.Contains(DatoBusqueda) || x.ListaCheckIn.Any(a => a.Contains(DatoBusqueda)) || x.Notas.Contains(DatoBusqueda)).ToList<TareaModel>();
+                Lista = col.Find(x => x.NumeroTarea.Contains(DatoBusqueda) || x.Descripcion.Contains(DatoBusqueda) || x.ListaCheckIn.Any(a => a.Contains(DatoBusqueda)) || x.Notas.Contains(DatoBusqueda)).OrderByDescending(x => x.FechaRegistro).ToList<TareaModel>();
             }
 
             return Lista;
