@@ -31,6 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlTareasFrm));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtPrioridad = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.cmbTipoTareaCargada = new System.Windows.Forms.ComboBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.btnGuardarNota = new System.Windows.Forms.Button();
             this.rtbNotas = new System.Windows.Forms.RichTextBox();
             this.label17 = new System.Windows.Forms.Label();
@@ -58,8 +62,10 @@
             this.txtTareaCargada = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.gridTareas = new System.Windows.Forms.DataGridView();
+            this.TipoTarea = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tarea = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CodigoTipoTarea = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmbSprint = new System.Windows.Forms.ComboBox();
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -69,9 +75,11 @@
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.ttControles = new System.Windows.Forms.ToolTip(this.components);
+            this.cmbTipoTarea = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
             this.lblCantidad = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridFuentes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCheckIn)).BeginInit();
@@ -80,6 +88,10 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.txtPrioridad);
+            this.panel1.Controls.Add(this.label19);
+            this.panel1.Controls.Add(this.cmbTipoTareaCargada);
+            this.panel1.Controls.Add(this.label18);
             this.panel1.Controls.Add(this.btnGuardarNota);
             this.panel1.Controls.Add(this.rtbNotas);
             this.panel1.Controls.Add(this.label17);
@@ -108,6 +120,51 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(552, 552);
             this.panel1.TabIndex = 0;
+            // 
+            // txtPrioridad
+            // 
+            this.txtPrioridad.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrioridad.Location = new System.Drawing.Point(331, 28);
+            this.txtPrioridad.Name = "txtPrioridad";
+            this.txtPrioridad.Size = new System.Drawing.Size(64, 23);
+            this.txtPrioridad.TabIndex = 33;
+            this.ttControles.SetToolTip(this.txtPrioridad, "Enter para editar tiempo estimado");
+            this.txtPrioridad.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPrioridad_KeyDown);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.White;
+            this.label19.Location = new System.Drawing.Point(328, 7);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(65, 17);
+            this.label19.TabIndex = 32;
+            this.label19.Text = "Prioridad";
+            // 
+            // cmbTipoTareaCargada
+            // 
+            this.cmbTipoTareaCargada.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipoTareaCargada.DropDownWidth = 70;
+            this.cmbTipoTareaCargada.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbTipoTareaCargada.FormattingEnabled = true;
+            this.cmbTipoTareaCargada.Location = new System.Drawing.Point(7, 28);
+            this.cmbTipoTareaCargada.Name = "cmbTipoTareaCargada";
+            this.cmbTipoTareaCargada.Size = new System.Drawing.Size(70, 24);
+            this.cmbTipoTareaCargada.TabIndex = 31;
+            this.ttControles.SetToolTip(this.cmbTipoTareaCargada, "Al cambiar se afecta en BD");
+            this.cmbTipoTareaCargada.SelectionChangeCommitted += new System.EventHandler(this.cmbTipoTareaCargada_SelectionChangeCommitted);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.ForeColor = System.Drawing.Color.White;
+            this.label18.Location = new System.Drawing.Point(7, 7);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(36, 17);
+            this.label18.TabIndex = 30;
+            this.label18.Text = "Tipo";
             // 
             // btnGuardarNota
             // 
@@ -200,17 +257,17 @@
             this.cmbSprintCargado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbSprintCargado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbSprintCargado.FormattingEnabled = true;
-            this.cmbSprintCargado.Location = new System.Drawing.Point(110, 28);
+            this.cmbSprintCargado.Location = new System.Drawing.Point(187, 28);
             this.cmbSprintCargado.Name = "cmbSprintCargado";
             this.cmbSprintCargado.Size = new System.Drawing.Size(68, 24);
             this.cmbSprintCargado.TabIndex = 23;
             this.ttControles.SetToolTip(this.cmbSprintCargado, "Al cambiar se afecta en BD");
-            this.cmbSprintCargado.SelectedIndexChanged += new System.EventHandler(this.cmbSprintCargado_SelectedIndexChanged);
+            this.cmbSprintCargado.SelectionChangeCommitted += new System.EventHandler(this.cmbSprintCargado_SelectionChangeCommitted);
             // 
             // txtEstimado
             // 
             this.txtEstimado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEstimado.Location = new System.Drawing.Point(184, 28);
+            this.txtEstimado.Location = new System.Drawing.Point(261, 28);
             this.txtEstimado.Name = "txtEstimado";
             this.txtEstimado.Size = new System.Drawing.Size(64, 23);
             this.txtEstimado.TabIndex = 22;
@@ -222,7 +279,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(181, 7);
+            this.label11.Location = new System.Drawing.Point(258, 7);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(66, 17);
             this.label11.TabIndex = 21;
@@ -233,7 +290,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(110, 7);
+            this.label7.Location = new System.Drawing.Point(187, 7);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(45, 17);
             this.label7.TabIndex = 19;
@@ -386,7 +443,7 @@
             // txtTareaCargada
             // 
             this.txtTareaCargada.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTareaCargada.Location = new System.Drawing.Point(6, 28);
+            this.txtTareaCargada.Location = new System.Drawing.Point(83, 28);
             this.txtTareaCargada.Name = "txtTareaCargada";
             this.txtTareaCargada.Size = new System.Drawing.Size(98, 23);
             this.txtTareaCargada.TabIndex = 8;
@@ -398,7 +455,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(3, 7);
+            this.label3.Location = new System.Drawing.Point(80, 7);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(46, 17);
             this.label3.TabIndex = 6;
@@ -413,8 +470,10 @@
             this.gridTareas.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.gridTareas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.gridTareas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.TipoTarea,
             this.Tarea,
-            this.Descripcion});
+            this.Descripcion,
+            this.CodigoTipoTarea});
             this.gridTareas.Location = new System.Drawing.Point(12, 114);
             this.gridTareas.MultiSelect = false;
             this.gridTareas.Name = "gridTareas";
@@ -427,19 +486,33 @@
             this.gridTareas.SelectionChanged += new System.EventHandler(this.gridTareas_SelectionChanged);
             this.gridTareas.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridTareas_KeyDown);
             // 
+            // TipoTarea
+            // 
+            this.TipoTarea.HeaderText = "Tipo";
+            this.TipoTarea.Name = "TipoTarea";
+            this.TipoTarea.ReadOnly = true;
+            this.TipoTarea.Width = 50;
+            // 
             // Tarea
             // 
             this.Tarea.HeaderText = "Tarea";
             this.Tarea.Name = "Tarea";
             this.Tarea.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Tarea.Width = 90;
+            this.Tarea.Width = 50;
             // 
             // Descripcion
             // 
             this.Descripcion.HeaderText = "Descripción";
             this.Descripcion.Name = "Descripcion";
             this.Descripcion.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Descripcion.Width = 455;
+            this.Descripcion.Width = 440;
+            // 
+            // CodigoTipoTarea
+            // 
+            this.CodigoTipoTarea.HeaderText = "Código Tipo Tarea";
+            this.CodigoTipoTarea.Name = "CodigoTipoTarea";
+            this.CodigoTipoTarea.ReadOnly = true;
+            this.CodigoTipoTarea.Visible = false;
             // 
             // cmbSprint
             // 
@@ -491,7 +564,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(13, 65);
+            this.label9.Location = new System.Drawing.Point(89, 65);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(46, 17);
             this.label9.TabIndex = 8;
@@ -500,7 +573,7 @@
             // txtNumeroTarea
             // 
             this.txtNumeroTarea.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNumeroTarea.Location = new System.Drawing.Point(12, 85);
+            this.txtNumeroTarea.Location = new System.Drawing.Point(88, 85);
             this.txtNumeroTarea.Name = "txtNumeroTarea";
             this.txtNumeroTarea.Size = new System.Drawing.Size(92, 23);
             this.txtNumeroTarea.TabIndex = 9;
@@ -510,9 +583,9 @@
             // txtDescripcion
             // 
             this.txtDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescripcion.Location = new System.Drawing.Point(112, 85);
+            this.txtDescripcion.Location = new System.Drawing.Point(188, 85);
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(507, 23);
+            this.txtDescripcion.Size = new System.Drawing.Size(431, 23);
             this.txtDescripcion.TabIndex = 11;
             this.ttControles.SetToolTip(this.txtDescripcion, "Enter para registrar tarea");
             this.txtDescripcion.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDescripcion_KeyDown);
@@ -522,7 +595,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(113, 65);
+            this.label10.Location = new System.Drawing.Point(189, 65);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(82, 17);
             this.label10.TabIndex = 10;
@@ -531,6 +604,17 @@
             // ttControles
             // 
             this.ttControles.Tag = "";
+            // 
+            // cmbTipoTarea
+            // 
+            this.cmbTipoTarea.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbTipoTarea.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbTipoTarea.FormattingEnabled = true;
+            this.cmbTipoTarea.Location = new System.Drawing.Point(12, 84);
+            this.cmbTipoTarea.Name = "cmbTipoTarea";
+            this.cmbTipoTarea.Size = new System.Drawing.Size(70, 24);
+            this.cmbTipoTarea.TabIndex = 35;
+            this.ttControles.SetToolTip(this.cmbTipoTarea, "Al cambiar se afecta en BD");
             // 
             // label14
             // 
@@ -565,12 +649,25 @@
             this.label15.TabIndex = 14;
             this.label15.Text = "F1: Sprint y Funtes";
             // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.ForeColor = System.Drawing.Color.White;
+            this.label20.Location = new System.Drawing.Point(9, 63);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(36, 17);
+            this.label20.TabIndex = 34;
+            this.label20.Text = "Tipo";
+            // 
             // ControlTareasFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(1180, 557);
+            this.Controls.Add(this.cmbTipoTarea);
+            this.Controls.Add(this.label20);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.lblCantidad);
             this.Controls.Add(this.label14);
@@ -584,7 +681,7 @@
             this.Controls.Add(this.cmbSprint);
             this.Controls.Add(this.gridTareas);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;
@@ -645,8 +742,16 @@
         private System.Windows.Forms.Button btnGuardarNota;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fuentes;
         private System.Windows.Forms.DataGridViewTextBoxColumn CheckIn;
+        private System.Windows.Forms.ComboBox cmbTipoTareaCargada;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.TextBox txtPrioridad;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.ComboBox cmbTipoTarea;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TipoTarea;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tarea;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CodigoTipoTarea;
     }
 }
 

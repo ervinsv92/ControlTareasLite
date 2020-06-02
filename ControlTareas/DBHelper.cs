@@ -64,7 +64,8 @@ namespace ControlTareas
             List<TareaModel> Lista = null;
             using (var db = GetConexion())
             {
-                Lista = db.Query<TareaModel>().Where(x => x.Sprint == NumeroSprint).OrderByDescending(x => x.FechaRegistro).ToList();
+                Lista = db.Query<TareaModel>().Where(x => x.Sprint == NumeroSprint).ToList();
+                Lista = Lista.OrderBy(x => x.TipoTarea).ThenBy(x=>x.Prioridad).ThenByDescending(x=>x.FechaRegistro).ToList();
             }
 
             return Lista;

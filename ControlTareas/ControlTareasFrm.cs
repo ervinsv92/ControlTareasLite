@@ -27,6 +27,7 @@ namespace ControlTareas
             LlenarComboEstadoTarea();
             LlenarComboSprint();
             LlenarComboFuentes();
+            LlenarComboTipoTarea();
             if (cmbSprint.Items.Count > 0)
             {
                 LlenarGridTareas(Int32.Parse(cmbSprint.SelectedValue.ToString()));
@@ -66,6 +67,7 @@ namespace ControlTareas
                     gridTareas.Rows[gridTareas.Rows.Count - 1].Cells["Descripcion"].Value = tarea.Descripcion;
 
                     PintarEstado(tarea.Estado, gridTareas.Rows.Count - 1);
+                    PintarTipoTarea(tarea.TipoTarea, gridTareas.Rows.Count - 1);
                 }
                 lblCantidad.Text = gridTareas.Rows.Count.ToString();
             }
@@ -75,13 +77,38 @@ namespace ControlTareas
             }
         }
 
+        private void PintarTipoTarea(int TipoTarea, int fila) {
+            switch (TipoTarea)
+            {
+                case (int)TipoTareaEnum.ProductBacklogItem:
+                    gridTareas.Rows[fila].Cells["TipoTarea"].Value = "PBI";
+                    gridTareas.Rows[fila].Cells[0].Style.BackColor = Color.FromArgb(0, 199, 53);
+                    break;
+                case (int)TipoTareaEnum.Bug:
+                    gridTareas.Rows[fila].Cells["TipoTarea"].Value = "BUG";
+                    gridTareas.Rows[fila].Cells[0].Style.BackColor = Color.FromArgb(0, 157, 201);
+                    break;
+                case (int)TipoTareaEnum.BugHelpDesk:
+                    gridTareas.Rows[fila].Cells["TipoTarea"].Value = "BHD";
+                    gridTareas.Rows[fila].Cells[0].Style.BackColor = Color.FromArgb(229, 5, 47);
+                    break;
+                case (int)TipoTareaEnum.InternalImprovement:
+                    gridTareas.Rows[fila].Cells["TipoTarea"].Value = "Internal";
+                    gridTareas.Rows[fila].Cells[0].Style.BackColor = Color.FromArgb(255, 112, 250);
+                    break;
+            }
+        }
+
         private void PintarEstado(int estado, int fila) {
-            if (estado == (int)EstadoTarea.Creada) {
-                gridTareas.Rows[fila].DefaultCellStyle.BackColor = Color.White;
-            } else if (estado == (int)EstadoTarea.Iniciada) {
-                gridTareas.Rows[fila].DefaultCellStyle.BackColor = Color.LightGreen;
-            } else if (estado == (int)EstadoTarea.Finalizada) {
-                gridTareas.Rows[fila].DefaultCellStyle.BackColor = Color.LightBlue;
+            if (estado == (int)EstadoTareaEnum.Creada) {
+                gridTareas.Rows[fila].Cells["Tarea"].Style.BackColor = Color.White;
+                gridTareas.Rows[fila].Cells["Descripcion"].Style.BackColor = Color.White;
+            } else if (estado == (int)EstadoTareaEnum.Iniciada) {
+                gridTareas.Rows[fila].Cells["Tarea"].Style.BackColor = Color.LightBlue;
+                gridTareas.Rows[fila].Cells["Descripcion"].Style.BackColor = Color.LightBlue;
+            } else if (estado == (int)EstadoTareaEnum.Finalizada) {
+                gridTareas.Rows[fila].Cells["Tarea"].Style.BackColor = Color.LightGreen;
+                gridTareas.Rows[fila].Cells["Descripcion"].Style.BackColor = Color.LightGreen;
             }
         }
 
@@ -111,19 +138,19 @@ namespace ControlTareas
             data.Columns.Add("text");
 
             var row = data.NewRow();
-            row[0] = (int)EstadoTarea.Creada;
+            row[0] = (int)EstadoTareaEnum.Creada;
             row[1] = "Creada";
 
             data.Rows.Add(row);
 
             row = data.NewRow();
-            row[0] = (int)EstadoTarea.Iniciada;
+            row[0] = (int)EstadoTareaEnum.Iniciada;
             row[1] = "Iniciada";
 
             data.Rows.Add(row);
 
             row = data.NewRow();
-            row[0] = (int)EstadoTarea.Finalizada;
+            row[0] = (int)EstadoTareaEnum.Finalizada;
             row[1] = "Finalizada";
 
             data.Rows.Add(row);
@@ -132,6 +159,66 @@ namespace ControlTareas
             cmbEstado.ValueMember = "value";
             cmbEstado.DataSource = data;
         }
+
+        private void LlenarComboTipoTarea()
+        {
+            DataTable data = new DataTable();
+            data.Columns.Add("value");
+            data.Columns.Add("text");
+
+            var row = data.NewRow();
+            row[0] = (int)TipoTareaEnum.ProductBacklogItem;
+            row[1] = "PBI";
+            data.Rows.Add(row);
+
+            row = data.NewRow();
+            row[0] = (int)TipoTareaEnum.Bug;
+            row[1] = "Bug";
+            data.Rows.Add(row);
+
+            row = data.NewRow();
+            row[0] = (int)TipoTareaEnum.BugHelpDesk;
+            row[1] = "BHD";
+            data.Rows.Add(row);
+
+            row = data.NewRow();
+            row[0] = (int)TipoTareaEnum.InternalImprovement;
+            row[1] = "Internal";
+            data.Rows.Add(row);
+
+            cmbTipoTareaCargada.DisplayMember = "text";
+            cmbTipoTareaCargada.ValueMember = "value";
+            cmbTipoTareaCargada.DataSource = data;
+
+            data = new DataTable();
+            data.Columns.Add("value");
+            data.Columns.Add("text");
+
+            row = data.NewRow();
+            row[0] = (int)TipoTareaEnum.ProductBacklogItem;
+            row[1] = "PBI";
+            data.Rows.Add(row);
+
+            row = data.NewRow();
+            row[0] = (int)TipoTareaEnum.Bug;
+            row[1] = "Bug";
+            data.Rows.Add(row);
+
+            row = data.NewRow();
+            row[0] = (int)TipoTareaEnum.BugHelpDesk;
+            row[1] = "BHD";
+            data.Rows.Add(row);
+
+            row = data.NewRow();
+            row[0] = (int)TipoTareaEnum.InternalImprovement;
+            row[1] = "Internal";
+            data.Rows.Add(row);
+
+            cmbTipoTarea.DisplayMember = "text";
+            cmbTipoTarea.ValueMember = "value";
+            cmbTipoTarea.DataSource = data;
+        }
+
         private void cmbSprint_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -235,6 +322,7 @@ namespace ControlTareas
                         tarea.NumeroTarea = txtNumeroTarea.Text.Trim();
                         tarea.Descripcion = txtDescripcion.Text.Trim();
                         tarea.Sprint = Int32.Parse(cmbSprint.SelectedValue.ToString());
+                        tarea.TipoTarea = Int32.Parse(cmbTipoTarea.SelectedValue.ToString());
                         dbHelper.RegistrarTarea(tarea);
                         LlenarGridTareas(Int32.Parse(cmbSprint.SelectedValue.ToString()));
                         LimpiarCampos();
@@ -253,6 +341,7 @@ namespace ControlTareas
         {
             txtNumeroTarea.Text = "";
             txtDescripcion.Text = "";
+            cmbTipoTarea.SelectedIndex = 0;
         }
 
         private void txtDescripcion_KeyDown(object sender, KeyEventArgs e)
@@ -283,6 +372,7 @@ namespace ControlTareas
                         tarea.NumeroTarea = txtNumeroTarea.Text.Trim();
                         tarea.Descripcion = txtDescripcion.Text.Trim();
                         tarea.Sprint = Int32.Parse(cmbSprint.SelectedValue.ToString());
+                        tarea.TipoTarea = Int32.Parse(cmbTipoTarea.SelectedValue.ToString());
                         dbHelper.RegistrarTarea(tarea);
                         LlenarGridTareas(Int32.Parse(cmbSprint.SelectedValue.ToString()));
                         LimpiarCampos();
@@ -314,6 +404,8 @@ namespace ControlTareas
             cmbEstado.SelectedValue = _Tarea.Estado;
             lblFechaInicio.Text = _Tarea.FechaInicio.ToShortDateString() + " " + _Tarea.FechaInicio.ToShortTimeString();
             lblFechaFin.Text = _Tarea.FechaFin.ToShortDateString() + " " + _Tarea.FechaFin.ToShortTimeString();
+            txtPrioridad.Text = _Tarea.Prioridad.ToString();
+            cmbTipoTareaCargada.SelectedValue = _Tarea.TipoTarea.ToString();
             gridCheckIn.Rows.Clear();
             gridFuentes.Rows.Clear();
 
@@ -385,16 +477,6 @@ namespace ControlTareas
             }
         }
 
-        private void cmbSprintCargado_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (_Tarea != null)
-            {
-                _Tarea.Sprint = Int32.Parse(cmbSprintCargado.SelectedValue.ToString());
-                dbHelper.ActualizarTarea(_Tarea);
-                ListaTareas[ListaTareas.FindLastIndex(x => x.Id == _Tarea.Id)] = _Tarea;
-            }
-        }
-
         private void txtEstimado_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -406,7 +488,7 @@ namespace ControlTareas
                         _Tarea.Estimado = Byte.Parse(txtEstimado.Text);
                         dbHelper.ActualizarTarea(_Tarea);
                         ListaTareas[ListaTareas.FindLastIndex(x => x.Id == _Tarea.Id)] = _Tarea;
-                        txtDesciprcionCargada.Focus();
+                        txtPrioridad.Focus();
                     }
                     else
                     {
@@ -422,12 +504,12 @@ namespace ControlTareas
             {
                 _Tarea.Estado = Byte.Parse(cmbEstado.SelectedValue.ToString());
 
-                if (_Tarea.Estado == (int)EstadoTarea.Creada)
+                if (_Tarea.Estado == (int)EstadoTareaEnum.Creada)
                 {
                     _Tarea.FechaInicio = new DateTime(1900, 1, 1);
                     _Tarea.FechaFin = new DateTime(1900, 1, 1);
                 }
-                else if (_Tarea.Estado == (int)EstadoTarea.Iniciada)
+                else if (_Tarea.Estado == (int)EstadoTareaEnum.Iniciada)
                 {
                     _Tarea.FechaInicio = DateTime.Now;
                     _Tarea.FechaFin = new DateTime(1900, 1, 1);
@@ -685,6 +767,49 @@ namespace ControlTareas
             }
             catch (Exception)
             {
+            }
+        }
+
+        private void txtPrioridad_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (_Tarea != null)
+                {
+                    if (int.TryParse(txtPrioridad.Text, out var n))
+                    {
+                        _Tarea.Prioridad = Byte.Parse(txtPrioridad.Text);
+                        dbHelper.ActualizarTarea(_Tarea);
+                        ListaTareas[ListaTareas.FindLastIndex(x => x.Id == _Tarea.Id)] = _Tarea;
+                        txtDesciprcionCargada.Focus();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Debe digitar un número entero");
+                    }
+                }
+            }
+        }
+
+        private void cmbTipoTareaCargada_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (_Tarea != null)
+            {
+                _Tarea.TipoTarea = Int32.Parse(cmbTipoTareaCargada.SelectedValue.ToString());
+                dbHelper.ActualizarTarea(_Tarea);
+                LlenarGridTareas(Int32.Parse(cmbSprint.SelectedValue.ToString()));
+                gridTareas.Focus();
+            }
+        }
+
+        private void cmbSprintCargado_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (_Tarea != null)
+            {
+                _Tarea.Sprint = Int32.Parse(cmbSprintCargado.SelectedValue.ToString());
+                dbHelper.ActualizarTarea(_Tarea);
+                LlenarGridTareas(Int32.Parse(cmbSprint.SelectedValue.ToString()));
+                gridTareas.Focus();
             }
         }
     }

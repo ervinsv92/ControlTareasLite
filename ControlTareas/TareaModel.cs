@@ -20,12 +20,16 @@ namespace ControlTareas
         public List<string> ListaCheckIn { get; set; }
         public List<string> ListaFuentes { get; set; }
         public string Notas { get; set; }
+        public int Prioridad { get; set; }
+        public int TipoTarea { get; set; }
 
         public TareaModel() {
             this.FechaRegistro = DateTime.Now;
-            this.Estado = (int)EstadoTarea.Creada;
+            this.Estado = (int)EstadoTareaEnum.Creada;
             this.FechaInicio = new DateTime(1900, 1, 1);
             this.FechaFin = new DateTime(1900, 1, 1);
+            this.TipoTarea = (int)TipoTareaEnum.ProductBacklogItem;
+            this.Prioridad = 99999;//Prioridad por defecto para que salga de ultimo al crearlo
         }
     }
 }
