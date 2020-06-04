@@ -96,6 +96,10 @@ namespace ControlTareas
                     gridTareas.Rows[fila].Cells["TipoTarea"].Value = "Internal";
                     gridTareas.Rows[fila].Cells[0].Style.BackColor = Color.FromArgb(255, 112, 250);
                     break;
+                case (int)TipoTareaEnum.Test:
+                    gridTareas.Rows[fila].Cells["TipoTarea"].Value = "Test";
+                    gridTareas.Rows[fila].Cells[0].Style.BackColor = Color.FromArgb(188, 13, 252);
+                    break;
             }
         }
 
@@ -104,8 +108,8 @@ namespace ControlTareas
                 gridTareas.Rows[fila].Cells["Tarea"].Style.BackColor = Color.White;
                 gridTareas.Rows[fila].Cells["Descripcion"].Style.BackColor = Color.White;
             } else if (estado == (int)EstadoTareaEnum.Iniciada) {
-                gridTareas.Rows[fila].Cells["Tarea"].Style.BackColor = Color.LightBlue;
-                gridTareas.Rows[fila].Cells["Descripcion"].Style.BackColor = Color.LightBlue;
+                gridTareas.Rows[fila].Cells["Tarea"].Style.BackColor = Color.FromArgb(254, 246, 91);
+                gridTareas.Rows[fila].Cells["Descripcion"].Style.BackColor = Color.FromArgb(254, 246, 91);
             } else if (estado == (int)EstadoTareaEnum.Finalizada) {
                 gridTareas.Rows[fila].Cells["Tarea"].Style.BackColor = Color.LightGreen;
                 gridTareas.Rows[fila].Cells["Descripcion"].Style.BackColor = Color.LightGreen;
@@ -186,6 +190,11 @@ namespace ControlTareas
             row[1] = "Internal";
             data.Rows.Add(row);
 
+            row = data.NewRow();
+            row[0] = (int)TipoTareaEnum.Test;
+            row[1] = "Test";
+            data.Rows.Add(row);
+
             cmbTipoTareaCargada.DisplayMember = "text";
             cmbTipoTareaCargada.ValueMember = "value";
             cmbTipoTareaCargada.DataSource = data;
@@ -212,6 +221,11 @@ namespace ControlTareas
             row = data.NewRow();
             row[0] = (int)TipoTareaEnum.InternalImprovement;
             row[1] = "Internal";
+            data.Rows.Add(row);
+
+            row = data.NewRow();
+            row[0] = (int)TipoTareaEnum.Test;
+            row[1] = "Test";
             data.Rows.Add(row);
 
             cmbTipoTarea.DisplayMember = "text";
