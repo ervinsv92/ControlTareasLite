@@ -199,6 +199,15 @@ namespace ControlTareas
             cmbTipoTareaCargada.ValueMember = "value";
             cmbTipoTareaCargada.DataSource = data;
 
+            row = data.NewRow();
+            row[0] = (int)TipoTareaEnum.QA;
+            row[1] = "QA";
+            data.Rows.Add(row);
+
+            cmbTipoTareaCargada.DisplayMember = "text";
+            cmbTipoTareaCargada.ValueMember = "value";
+            cmbTipoTareaCargada.DataSource = data;
+
             data = new DataTable();
             data.Columns.Add("value");
             data.Columns.Add("text");
@@ -226,6 +235,11 @@ namespace ControlTareas
             row = data.NewRow();
             row[0] = (int)TipoTareaEnum.Test;
             row[1] = "Test";
+            data.Rows.Add(row);
+
+            row = data.NewRow();
+            row[0] = (int)TipoTareaEnum.QA;
+            row[1] = "QA";
             data.Rows.Add(row);
 
             cmbTipoTarea.DisplayMember = "text";
