@@ -100,6 +100,10 @@ namespace ControlTareas
                     gridTareas.Rows[fila].Cells["TipoTarea"].Value = "Test";
                     gridTareas.Rows[fila].Cells[0].Style.BackColor = Color.FromArgb(188, 13, 252);
                     break;
+                case (int)TipoTareaEnum.QA:
+                    gridTareas.Rows[fila].Cells["TipoTarea"].Value = "QA";
+                    gridTareas.Rows[fila].Cells[0].Style.BackColor = Color.FromArgb(95, 47, 0);
+                    break;
             }
         }
 
