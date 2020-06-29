@@ -514,30 +514,7 @@ namespace ControlTareas
 
         private void cmbEstado_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_Tarea != null)
-            {
-                _Tarea.Estado = Byte.Parse(cmbEstado.SelectedValue.ToString());
-
-                if (_Tarea.Estado == (int)EstadoTareaEnum.Creada)
-                {
-                    _Tarea.FechaInicio = new DateTime(1900, 1, 1);
-                    _Tarea.FechaFin = new DateTime(1900, 1, 1);
-                }
-                else if (_Tarea.Estado == (int)EstadoTareaEnum.Iniciada)
-                {
-                    _Tarea.FechaInicio = DateTime.Now;
-                    _Tarea.FechaFin = new DateTime(1900, 1, 1);
-                }
-                else
-                {
-                    _Tarea.FechaFin = DateTime.Now;
-                }
-
-                dbHelper.ActualizarTarea(_Tarea);
-                ListaTareas[ListaTareas.FindLastIndex(x => x.Id == _Tarea.Id)] = _Tarea;
-                PintarEstado(_Tarea.Estado, ListaTareas.FindLastIndex(x => x.Id == _Tarea.Id));
-                CargarTarea();
-            }
+          
         }
 
         private void txtCheckIn_KeyDown(object sender, KeyEventArgs e)
@@ -792,7 +769,7 @@ namespace ControlTareas
                 {
                     if (int.TryParse(txtPrioridad.Text, out var n))
                     {
-                        _Tarea.Prioridad = Byte.Parse(txtPrioridad.Text);
+                        _Tarea.Prioridad = Int32.Parse(txtPrioridad.Text);
                         dbHelper.ActualizarTarea(_Tarea);
                         ListaTareas[ListaTareas.FindLastIndex(x => x.Id == _Tarea.Id)] = _Tarea;
                         txtDesciprcionCargada.Focus();
@@ -824,6 +801,34 @@ namespace ControlTareas
                 dbHelper.ActualizarTarea(_Tarea);
                 LlenarGridTareas(Int32.Parse(cmbSprint.SelectedValue.ToString()));
                 gridTareas.Focus();
+            }
+        }
+
+        private void cmbEstado_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (_Tarea != null)
+            {
+                _Tarea.Estado = Byte.Parse(cmbEstado.SelectedValue.ToString());
+
+                if (_Tarea.Estado == (int)EstadoTareaEnum.Creada)
+                {
+                    _Tarea.FechaInicio = new DateTime(1900, 1, 1);
+                    _Tarea.FechaFin = new DateTime(1900, 1, 1);
+                }
+                else if (_Tarea.Estado == (int)EstadoTareaEnum.Iniciada)
+                {
+                    _Tarea.FechaInicio = DateTime.Now;
+                    _Tarea.FechaFin = new DateTime(1900, 1, 1);
+                }
+                else
+                {
+                    _Tarea.FechaFin = DateTime.Now;
+                }
+
+                dbHelper.ActualizarTarea(_Tarea);
+                ListaTareas[ListaTareas.FindLastIndex(x => x.Id == _Tarea.Id)] = _Tarea;
+                PintarEstado(_Tarea.Estado, ListaTareas.FindLastIndex(x => x.Id == _Tarea.Id));
+                CargarTarea();
             }
         }
     }

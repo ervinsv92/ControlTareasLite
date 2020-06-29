@@ -19,6 +19,7 @@ namespace ControlTareas
         Bug = 1,
         ProductBacklogItem = 2,
         InternalImprovement = 3,
-        Test = 4
+        Test = 4,
+        QA = 5
     }
 }

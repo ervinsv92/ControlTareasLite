@@ -407,6 +407,7 @@
             this.cmbEstado.TabIndex = 12;
             this.ttControles.SetToolTip(this.cmbEstado, "Al cambiar se modifica en BD junto con las fechas de inicio y fin");
             this.cmbEstado.SelectedIndexChanged += new System.EventHandler(this.cmbEstado_SelectedIndexChanged);
+            this.cmbEstado.SelectionChangeCommitted += new System.EventHandler(this.cmbEstado_SelectionChangeCommitted);
             // 
             // label5
             // 
