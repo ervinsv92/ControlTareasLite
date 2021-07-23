@@ -437,6 +437,7 @@ namespace ControlTareas
             lblFechaInicio.Text = _Tarea.FechaInicio.ToShortDateString() + " " + _Tarea.FechaInicio.ToShortTimeString();
             lblFechaFin.Text = _Tarea.FechaFin.ToShortDateString() + " " + _Tarea.FechaFin.ToShortTimeString();
             txtPrioridad.Text = _Tarea.Prioridad.ToString();
+            txtTareaRevision.Text = _Tarea.NumeroTareaRevision;
             cmbTipoTareaCargada.SelectedValue = _Tarea.TipoTarea.ToString();
             gridCheckIn.Rows.Clear();
             gridFuentes.Rows.Clear();
@@ -528,11 +529,6 @@ namespace ControlTareas
                     }
                 }
             }
-        }
-
-        private void cmbEstado_SelectedIndexChanged(object sender, EventArgs e)
-        {
-          
         }
 
         private void txtCheckIn_KeyDown(object sender, KeyEventArgs e)
@@ -635,6 +631,7 @@ namespace ControlTareas
             lblFechaInicio.Text = new DateTime(1900, 1, 1).ToLongDateString();
             lblFechaFin.Text = new DateTime(1900, 1, 1).ToLongDateString();
             txtCheckIn.Text = "";
+            txtTareaRevision.Text = "";
             cmbFuentes.SelectedIndex = -1;
             gridCheckIn.Rows.Clear();
             gridFuentes.Rows.Clear();
@@ -773,6 +770,7 @@ namespace ControlTareas
             {
                 _Tarea = ListaTareas[gridTareas.CurrentCell.RowIndex];
                 CargarTarea();
+                panelTabs.SelectTab(0);
             }
             catch (Exception)
             {
@@ -847,6 +845,19 @@ namespace ControlTareas
                 ListaTareas[ListaTareas.FindLastIndex(x => x.Id == _Tarea.Id)] = _Tarea;
                 PintarEstado(_Tarea.Estado, ListaTareas.FindLastIndex(x => x.Id == _Tarea.Id));
                 CargarTarea();
+            }
+        }
+
+        private void txtTareaRevision_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (_Tarea != null)
+                {
+                    _Tarea.NumeroTareaRevision = txtTareaRevision.Text;
+                    dbHelper.ActualizarTarea(_Tarea);
+                    ListaTareas[ListaTareas.FindLastIndex(x => x.Id == _Tarea.Id)] = _Tarea;
+                }
             }
         }
     }

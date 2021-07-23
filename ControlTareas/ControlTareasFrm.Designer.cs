@@ -31,22 +31,14 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlTareasFrm));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtPrioridad = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.cmbTipoTareaCargada = new System.Windows.Forms.ComboBox();
-            this.label18 = new System.Windows.Forms.Label();
-            this.btnGuardarNota = new System.Windows.Forms.Button();
-            this.rtbNotas = new System.Windows.Forms.RichTextBox();
+            this.txtTareaRevision = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
+            this.panelTabs = new System.Windows.Forms.TabControl();
+            this.tabInfo = new System.Windows.Forms.TabPage();
             this.cmbFuentes = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.txtCheckIn = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.cmbSprintCargado = new System.Windows.Forms.ComboBox();
-            this.txtEstimado = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.lblFechaFin = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.lblFechaInicio = new System.Windows.Forms.Label();
@@ -57,6 +49,18 @@
             this.CheckIn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmbEstado = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.tabNotas = new System.Windows.Forms.TabPage();
+            this.btnGuardarNota = new System.Windows.Forms.Button();
+            this.rtbNotas = new System.Windows.Forms.RichTextBox();
+            this.txtPrioridad = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.cmbTipoTareaCargada = new System.Windows.Forms.ComboBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.cmbSprintCargado = new System.Windows.Forms.ComboBox();
+            this.txtEstimado = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.txtDesciprcionCargada = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtTareaCargada = new System.Windows.Forms.TextBox();
@@ -81,37 +85,28 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
+            this.panelTabs.SuspendLayout();
+            this.tabInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridFuentes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCheckIn)).BeginInit();
+            this.tabNotas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridTareas)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.txtTareaRevision);
+            this.panel1.Controls.Add(this.label17);
+            this.panel1.Controls.Add(this.panelTabs);
             this.panel1.Controls.Add(this.txtPrioridad);
             this.panel1.Controls.Add(this.label19);
             this.panel1.Controls.Add(this.cmbTipoTareaCargada);
             this.panel1.Controls.Add(this.label18);
-            this.panel1.Controls.Add(this.btnGuardarNota);
-            this.panel1.Controls.Add(this.rtbNotas);
-            this.panel1.Controls.Add(this.label17);
             this.panel1.Controls.Add(this.label16);
-            this.panel1.Controls.Add(this.cmbFuentes);
-            this.panel1.Controls.Add(this.label13);
-            this.panel1.Controls.Add(this.txtCheckIn);
-            this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.cmbSprintCargado);
             this.panel1.Controls.Add(this.txtEstimado);
             this.panel1.Controls.Add(this.label11);
             this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.lblFechaFin);
-            this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.lblFechaInicio);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.gridFuentes);
-            this.panel1.Controls.Add(this.gridCheckIn);
-            this.panel1.Controls.Add(this.cmbEstado);
-            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.txtDesciprcionCargada);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.txtTareaCargada);
@@ -120,6 +115,256 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(552, 552);
             this.panel1.TabIndex = 0;
+            // 
+            // txtTareaRevision
+            // 
+            this.txtTareaRevision.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTareaRevision.Location = new System.Drawing.Point(401, 27);
+            this.txtTareaRevision.Name = "txtTareaRevision";
+            this.txtTareaRevision.Size = new System.Drawing.Size(64, 23);
+            this.txtTareaRevision.TabIndex = 38;
+            this.ttControles.SetToolTip(this.txtTareaRevision, "Enter para editar tiempo estimado");
+            this.txtTareaRevision.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTareaRevision_KeyDown);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.White;
+            this.label17.Location = new System.Drawing.Point(398, 8);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(75, 17);
+            this.label17.TabIndex = 37;
+            this.label17.Text = "T Revisión";
+            // 
+            // panelTabs
+            // 
+            this.panelTabs.Controls.Add(this.tabInfo);
+            this.panelTabs.Controls.Add(this.tabNotas);
+            this.panelTabs.Location = new System.Drawing.Point(6, 112);
+            this.panelTabs.Name = "panelTabs";
+            this.panelTabs.SelectedIndex = 0;
+            this.panelTabs.Size = new System.Drawing.Size(537, 417);
+            this.panelTabs.TabIndex = 34;
+            // 
+            // tabInfo
+            // 
+            this.tabInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tabInfo.Controls.Add(this.cmbFuentes);
+            this.tabInfo.Controls.Add(this.label13);
+            this.tabInfo.Controls.Add(this.txtCheckIn);
+            this.tabInfo.Controls.Add(this.label12);
+            this.tabInfo.Controls.Add(this.lblFechaFin);
+            this.tabInfo.Controls.Add(this.label8);
+            this.tabInfo.Controls.Add(this.lblFechaInicio);
+            this.tabInfo.Controls.Add(this.label6);
+            this.tabInfo.Controls.Add(this.gridFuentes);
+            this.tabInfo.Controls.Add(this.gridCheckIn);
+            this.tabInfo.Controls.Add(this.cmbEstado);
+            this.tabInfo.Controls.Add(this.label5);
+            this.tabInfo.Location = new System.Drawing.Point(4, 22);
+            this.tabInfo.Name = "tabInfo";
+            this.tabInfo.Padding = new System.Windows.Forms.Padding(3);
+            this.tabInfo.Size = new System.Drawing.Size(529, 391);
+            this.tabInfo.TabIndex = 0;
+            this.tabInfo.Text = "Info";
+            // 
+            // cmbFuentes
+            // 
+            this.cmbFuentes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbFuentes.FormattingEnabled = true;
+            this.cmbFuentes.Location = new System.Drawing.Point(212, 179);
+            this.cmbFuentes.Name = "cmbFuentes";
+            this.cmbFuentes.Size = new System.Drawing.Size(314, 24);
+            this.cmbFuentes.TabIndex = 33;
+            this.ttControles.SetToolTip(this.cmbFuentes, "Enter para registrar sprint");
+            this.cmbFuentes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbFuentes_KeyDown);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.White;
+            this.label13.Location = new System.Drawing.Point(209, 159);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(59, 17);
+            this.label13.TabIndex = 41;
+            this.label13.Text = "Fuentes";
+            // 
+            // txtCheckIn
+            // 
+            this.txtCheckIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCheckIn.Location = new System.Drawing.Point(3, 180);
+            this.txtCheckIn.Name = "txtCheckIn";
+            this.txtCheckIn.Size = new System.Drawing.Size(203, 23);
+            this.txtCheckIn.TabIndex = 40;
+            this.ttControles.SetToolTip(this.txtCheckIn, "Enter para registrar Check In");
+            this.txtCheckIn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCheckIn_KeyDown);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.White;
+            this.label12.Location = new System.Drawing.Point(3, 159);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(62, 17);
+            this.label12.TabIndex = 39;
+            this.label12.Text = "Check In";
+            // 
+            // lblFechaFin
+            // 
+            this.lblFechaFin.AutoSize = true;
+            this.lblFechaFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFechaFin.ForeColor = System.Drawing.Color.White;
+            this.lblFechaFin.Location = new System.Drawing.Point(349, 30);
+            this.lblFechaFin.Name = "lblFechaFin";
+            this.lblFechaFin.Size = new System.Drawing.Size(80, 17);
+            this.lblFechaFin.TabIndex = 38;
+            this.lblFechaFin.Text = "1900/01/01";
+            this.ttControles.SetToolTip(this.lblFechaFin, "Cambia segun lo seleccionado en el estado");
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(310, 31);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(35, 17);
+            this.label8.TabIndex = 37;
+            this.label8.Text = "Fin: ";
+            // 
+            // lblFechaInicio
+            // 
+            this.lblFechaInicio.AutoSize = true;
+            this.lblFechaInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFechaInicio.ForeColor = System.Drawing.Color.White;
+            this.lblFechaInicio.Location = new System.Drawing.Point(174, 31);
+            this.lblFechaInicio.Name = "lblFechaInicio";
+            this.lblFechaInicio.Size = new System.Drawing.Size(80, 17);
+            this.lblFechaInicio.TabIndex = 36;
+            this.lblFechaInicio.Text = "1900/01/01";
+            this.ttControles.SetToolTip(this.lblFechaInicio, "Cambia segun lo seleccionado en el estado");
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(130, 31);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(48, 17);
+            this.label6.TabIndex = 35;
+            this.label6.Text = "Inicio: ";
+            // 
+            // gridFuentes
+            // 
+            this.gridFuentes.AllowUserToAddRows = false;
+            this.gridFuentes.AllowUserToDeleteRows = false;
+            this.gridFuentes.AllowUserToResizeColumns = false;
+            this.gridFuentes.AllowUserToResizeRows = false;
+            this.gridFuentes.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.gridFuentes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridFuentes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Fuentes});
+            this.gridFuentes.Location = new System.Drawing.Point(212, 212);
+            this.gridFuentes.MultiSelect = false;
+            this.gridFuentes.Name = "gridFuentes";
+            this.gridFuentes.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.gridFuentes.Size = new System.Drawing.Size(314, 187);
+            this.gridFuentes.TabIndex = 34;
+            this.ttControles.SetToolTip(this.gridFuentes, "Se puede editar desde el grid");
+            this.gridFuentes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridFuentes_KeyDown);
+            // 
+            // Fuentes
+            // 
+            this.Fuentes.HeaderText = "Fuentes";
+            this.Fuentes.Name = "Fuentes";
+            this.Fuentes.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Fuentes.Width = 260;
+            // 
+            // gridCheckIn
+            // 
+            this.gridCheckIn.AllowUserToAddRows = false;
+            this.gridCheckIn.AllowUserToDeleteRows = false;
+            this.gridCheckIn.AllowUserToResizeColumns = false;
+            this.gridCheckIn.AllowUserToResizeRows = false;
+            this.gridCheckIn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.gridCheckIn.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridCheckIn.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.CheckIn});
+            this.gridCheckIn.Location = new System.Drawing.Point(3, 212);
+            this.gridCheckIn.MultiSelect = false;
+            this.gridCheckIn.Name = "gridCheckIn";
+            this.gridCheckIn.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.gridCheckIn.Size = new System.Drawing.Size(203, 187);
+            this.gridCheckIn.TabIndex = 30;
+            this.ttControles.SetToolTip(this.gridCheckIn, "Se puede editar desde el grid");
+            this.gridCheckIn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridCheckIn_KeyDown);
+            // 
+            // CheckIn
+            // 
+            this.CheckIn.HeaderText = "Check In";
+            this.CheckIn.Name = "CheckIn";
+            this.CheckIn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.CheckIn.Width = 145;
+            // 
+            // cmbEstado
+            // 
+            this.cmbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbEstado.FormattingEnabled = true;
+            this.cmbEstado.Location = new System.Drawing.Point(3, 28);
+            this.cmbEstado.Name = "cmbEstado";
+            this.cmbEstado.Size = new System.Drawing.Size(121, 24);
+            this.cmbEstado.TabIndex = 32;
+            this.ttControles.SetToolTip(this.cmbEstado, "Al cambiar se modifica en BD junto con las fechas de inicio y fin");
+            this.cmbEstado.SelectionChangeCommitted += new System.EventHandler(this.cmbEstado_SelectionChangeCommitted);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(0, 8);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(52, 17);
+            this.label5.TabIndex = 31;
+            this.label5.Text = "Estado";
+            // 
+            // tabNotas
+            // 
+            this.tabNotas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tabNotas.Controls.Add(this.btnGuardarNota);
+            this.tabNotas.Controls.Add(this.rtbNotas);
+            this.tabNotas.Location = new System.Drawing.Point(4, 22);
+            this.tabNotas.Name = "tabNotas";
+            this.tabNotas.Padding = new System.Windows.Forms.Padding(3);
+            this.tabNotas.Size = new System.Drawing.Size(529, 391);
+            this.tabNotas.TabIndex = 1;
+            this.tabNotas.Text = "Notas";
+            // 
+            // btnGuardarNota
+            // 
+            this.btnGuardarNota.BackColor = System.Drawing.Color.DimGray;
+            this.btnGuardarNota.ForeColor = System.Drawing.Color.White;
+            this.btnGuardarNota.Location = new System.Drawing.Point(224, 362);
+            this.btnGuardarNota.Name = "btnGuardarNota";
+            this.btnGuardarNota.Size = new System.Drawing.Size(91, 23);
+            this.btnGuardarNota.TabIndex = 46;
+            this.btnGuardarNota.Text = "Guardar Nota";
+            this.btnGuardarNota.UseVisualStyleBackColor = false;
+            this.btnGuardarNota.Click += new System.EventHandler(this.btnGuardarNota_Click);
+            // 
+            // rtbNotas
+            // 
+            this.rtbNotas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rtbNotas.Location = new System.Drawing.Point(6, 6);
+            this.rtbNotas.Name = "rtbNotas";
+            this.rtbNotas.Size = new System.Drawing.Size(517, 350);
+            this.rtbNotas.TabIndex = 45;
+            this.rtbNotas.Text = "";
             // 
             // txtPrioridad
             // 
@@ -166,38 +411,6 @@
             this.label18.TabIndex = 30;
             this.label18.Text = "Tipo";
             // 
-            // btnGuardarNota
-            // 
-            this.btnGuardarNota.BackColor = System.Drawing.Color.DimGray;
-            this.btnGuardarNota.ForeColor = System.Drawing.Color.White;
-            this.btnGuardarNota.Location = new System.Drawing.Point(483, 197);
-            this.btnGuardarNota.Name = "btnGuardarNota";
-            this.btnGuardarNota.Size = new System.Drawing.Size(60, 82);
-            this.btnGuardarNota.TabIndex = 29;
-            this.btnGuardarNota.Text = "Guardar Nota";
-            this.btnGuardarNota.UseVisualStyleBackColor = false;
-            this.btnGuardarNota.Click += new System.EventHandler(this.btnGuardarNota_Click);
-            // 
-            // rtbNotas
-            // 
-            this.rtbNotas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtbNotas.Location = new System.Drawing.Point(7, 197);
-            this.rtbNotas.Name = "rtbNotas";
-            this.rtbNotas.Size = new System.Drawing.Size(470, 82);
-            this.rtbNotas.TabIndex = 28;
-            this.rtbNotas.Text = "";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.ForeColor = System.Drawing.Color.White;
-            this.label17.Location = new System.Drawing.Point(4, 176);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(45, 17);
-            this.label17.TabIndex = 27;
-            this.label17.Text = "Notas";
-            // 
             // label16
             // 
             this.label16.AutoSize = true;
@@ -208,49 +421,6 @@
             this.label16.Size = new System.Drawing.Size(220, 17);
             this.label16.TabIndex = 15;
             this.label16.Text = "Del/Sup eliminar fila seleccionada";
-            // 
-            // cmbFuentes
-            // 
-            this.cmbFuentes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbFuentes.FormattingEnabled = true;
-            this.cmbFuentes.Location = new System.Drawing.Point(221, 309);
-            this.cmbFuentes.Name = "cmbFuentes";
-            this.cmbFuentes.Size = new System.Drawing.Size(322, 24);
-            this.cmbFuentes.TabIndex = 14;
-            this.ttControles.SetToolTip(this.cmbFuentes, "Enter para registrar sprint");
-            this.cmbFuentes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbFuentes_KeyDown);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(218, 289);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(59, 17);
-            this.label13.TabIndex = 26;
-            this.label13.Text = "Fuentes";
-            // 
-            // txtCheckIn
-            // 
-            this.txtCheckIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCheckIn.Location = new System.Drawing.Point(6, 310);
-            this.txtCheckIn.Name = "txtCheckIn";
-            this.txtCheckIn.Size = new System.Drawing.Size(209, 23);
-            this.txtCheckIn.TabIndex = 25;
-            this.ttControles.SetToolTip(this.txtCheckIn, "Enter para registrar Check In");
-            this.txtCheckIn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCheckIn_KeyDown);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(3, 289);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(62, 17);
-            this.label12.TabIndex = 24;
-            this.label12.Text = "Check In";
             // 
             // cmbSprintCargado
             // 
@@ -295,130 +465,6 @@
             this.label7.Size = new System.Drawing.Size(45, 17);
             this.label7.TabIndex = 19;
             this.label7.Text = "Sprint";
-            // 
-            // lblFechaFin
-            // 
-            this.lblFechaFin.AutoSize = true;
-            this.lblFechaFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFechaFin.ForeColor = System.Drawing.Color.White;
-            this.lblFechaFin.Location = new System.Drawing.Point(350, 145);
-            this.lblFechaFin.Name = "lblFechaFin";
-            this.lblFechaFin.Size = new System.Drawing.Size(80, 17);
-            this.lblFechaFin.TabIndex = 18;
-            this.lblFechaFin.Text = "1900/01/01";
-            this.ttControles.SetToolTip(this.lblFechaFin, "Cambia segun lo seleccionado en el estado");
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(319, 145);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(35, 17);
-            this.label8.TabIndex = 17;
-            this.label8.Text = "Fin: ";
-            // 
-            // lblFechaInicio
-            // 
-            this.lblFechaInicio.AutoSize = true;
-            this.lblFechaInicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFechaInicio.ForeColor = System.Drawing.Color.White;
-            this.lblFechaInicio.Location = new System.Drawing.Point(175, 146);
-            this.lblFechaInicio.Name = "lblFechaInicio";
-            this.lblFechaInicio.Size = new System.Drawing.Size(80, 17);
-            this.lblFechaInicio.TabIndex = 16;
-            this.lblFechaInicio.Text = "1900/01/01";
-            this.ttControles.SetToolTip(this.lblFechaInicio, "Cambia segun lo seleccionado en el estado");
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(131, 146);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(48, 17);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "Inicio: ";
-            // 
-            // gridFuentes
-            // 
-            this.gridFuentes.AllowUserToAddRows = false;
-            this.gridFuentes.AllowUserToDeleteRows = false;
-            this.gridFuentes.AllowUserToResizeColumns = false;
-            this.gridFuentes.AllowUserToResizeRows = false;
-            this.gridFuentes.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.gridFuentes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridFuentes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Fuentes});
-            this.gridFuentes.Location = new System.Drawing.Point(221, 342);
-            this.gridFuentes.MultiSelect = false;
-            this.gridFuentes.Name = "gridFuentes";
-            this.gridFuentes.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.gridFuentes.Size = new System.Drawing.Size(323, 187);
-            this.gridFuentes.TabIndex = 14;
-            this.ttControles.SetToolTip(this.gridFuentes, "Se puede editar desde el grid");
-            this.gridFuentes.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridFuentes_CellEndEdit);
-            this.gridFuentes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridFuentes_KeyDown);
-            // 
-            // Fuentes
-            // 
-            this.Fuentes.HeaderText = "Fuentes";
-            this.Fuentes.Name = "Fuentes";
-            this.Fuentes.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Fuentes.Width = 260;
-            // 
-            // gridCheckIn
-            // 
-            this.gridCheckIn.AllowUserToAddRows = false;
-            this.gridCheckIn.AllowUserToDeleteRows = false;
-            this.gridCheckIn.AllowUserToResizeColumns = false;
-            this.gridCheckIn.AllowUserToResizeRows = false;
-            this.gridCheckIn.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.gridCheckIn.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gridCheckIn.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.CheckIn});
-            this.gridCheckIn.Location = new System.Drawing.Point(6, 342);
-            this.gridCheckIn.MultiSelect = false;
-            this.gridCheckIn.Name = "gridCheckIn";
-            this.gridCheckIn.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.gridCheckIn.Size = new System.Drawing.Size(209, 187);
-            this.gridCheckIn.TabIndex = 8;
-            this.ttControles.SetToolTip(this.gridCheckIn, "Se puede editar desde el grid");
-            this.gridCheckIn.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridCheckIn_CellEndEdit);
-            this.gridCheckIn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridCheckIn_KeyDown);
-            // 
-            // CheckIn
-            // 
-            this.CheckIn.HeaderText = "Check In";
-            this.CheckIn.Name = "CheckIn";
-            this.CheckIn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.CheckIn.Width = 145;
-            // 
-            // cmbEstado
-            // 
-            this.cmbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbEstado.FormattingEnabled = true;
-            this.cmbEstado.Location = new System.Drawing.Point(6, 143);
-            this.cmbEstado.Name = "cmbEstado";
-            this.cmbEstado.Size = new System.Drawing.Size(121, 24);
-            this.cmbEstado.TabIndex = 12;
-            this.ttControles.SetToolTip(this.cmbEstado, "Al cambiar se modifica en BD junto con las fechas de inicio y fin");
-            this.cmbEstado.SelectedIndexChanged += new System.EventHandler(this.cmbEstado_SelectedIndexChanged);
-            this.cmbEstado.SelectionChangeCommitted += new System.EventHandler(this.cmbEstado_SelectionChangeCommitted);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(3, 122);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(52, 17);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Estado";
             // 
             // txtDesciprcionCargada
             // 
@@ -693,8 +739,12 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ControlTareasFrm_KeyDown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.panelTabs.ResumeLayout(false);
+            this.tabInfo.ResumeLayout(false);
+            this.tabInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridFuentes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCheckIn)).EndInit();
+            this.tabNotas.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridTareas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -709,18 +759,10 @@
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtDesciprcionCargada;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtTareaCargada;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView gridFuentes;
-        private System.Windows.Forms.DataGridView gridCheckIn;
-        private System.Windows.Forms.ComboBox cmbEstado;
-        private System.Windows.Forms.Label lblFechaFin;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label lblFechaInicio;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtNumeroTarea;
@@ -729,20 +771,11 @@
         private System.Windows.Forms.TextBox txtEstimado;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox cmbSprintCargado;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox txtCheckIn;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ToolTip ttControles;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label lblCantidad;
-        private System.Windows.Forms.ComboBox cmbFuentes;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.RichTextBox rtbNotas;
-        private System.Windows.Forms.Button btnGuardarNota;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Fuentes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CheckIn;
         private System.Windows.Forms.ComboBox cmbTipoTareaCargada;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox txtPrioridad;
@@ -753,6 +786,27 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Tarea;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn CodigoTipoTarea;
+        private System.Windows.Forms.TabControl panelTabs;
+        private System.Windows.Forms.TabPage tabInfo;
+        private System.Windows.Forms.ComboBox cmbFuentes;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txtCheckIn;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lblFechaFin;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblFechaInicio;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridView gridFuentes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Fuentes;
+        private System.Windows.Forms.DataGridView gridCheckIn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CheckIn;
+        private System.Windows.Forms.ComboBox cmbEstado;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TabPage tabNotas;
+        private System.Windows.Forms.Button btnGuardarNota;
+        private System.Windows.Forms.RichTextBox rtbNotas;
+        private System.Windows.Forms.TextBox txtTareaRevision;
+        private System.Windows.Forms.Label label17;
     }
 }
 
