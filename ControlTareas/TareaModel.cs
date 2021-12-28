@@ -23,6 +23,7 @@ namespace ControlTareas
         public int Prioridad { get; set; }
         public int TipoTarea { get; set; }
         public string NumeroTareaRevision { get; set; }
+        public string RutaCarpeta { get; set; }
 
         public TareaModel() {
             this.FechaRegistro = DateTime.Now;

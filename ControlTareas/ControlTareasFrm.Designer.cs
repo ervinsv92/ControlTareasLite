@@ -84,6 +84,9 @@
             this.lblCantidad = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.btnAbrirCarpeta = new System.Windows.Forms.Button();
+            this.btnCrearPlantillas = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panelTabs.SuspendLayout();
             this.tabInfo.SuspendLayout();
@@ -150,6 +153,8 @@
             // tabInfo
             // 
             this.tabInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tabInfo.Controls.Add(this.btnCrearPlantillas);
+            this.tabInfo.Controls.Add(this.btnAbrirCarpeta);
             this.tabInfo.Controls.Add(this.cmbFuentes);
             this.tabInfo.Controls.Add(this.label13);
             this.tabInfo.Controls.Add(this.txtCheckIn);
@@ -690,7 +695,7 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.White;
-            this.label15.Location = new System.Drawing.Point(492, 537);
+            this.label15.Location = new System.Drawing.Point(359, 537);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(127, 17);
             this.label15.TabIndex = 14;
@@ -707,12 +712,48 @@
             this.label20.TabIndex = 34;
             this.label20.Text = "Tipo";
             // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.ForeColor = System.Drawing.Color.White;
+            this.label21.Location = new System.Drawing.Point(492, 537);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(119, 17);
+            this.label21.TabIndex = 36;
+            this.label21.Text = "F2: Configuración";
+            // 
+            // btnAbrirCarpeta
+            // 
+            this.btnAbrirCarpeta.BackColor = System.Drawing.Color.DimGray;
+            this.btnAbrirCarpeta.ForeColor = System.Drawing.Color.White;
+            this.btnAbrirCarpeta.Location = new System.Drawing.Point(3, 60);
+            this.btnAbrirCarpeta.Name = "btnAbrirCarpeta";
+            this.btnAbrirCarpeta.Size = new System.Drawing.Size(91, 23);
+            this.btnAbrirCarpeta.TabIndex = 47;
+            this.btnAbrirCarpeta.Text = "Abrir Carpeta";
+            this.btnAbrirCarpeta.UseVisualStyleBackColor = false;
+            this.btnAbrirCarpeta.Click += new System.EventHandler(this.btnAbrirCarpeta_Click);
+            // 
+            // btnCrearPlantillas
+            // 
+            this.btnCrearPlantillas.BackColor = System.Drawing.Color.DimGray;
+            this.btnCrearPlantillas.ForeColor = System.Drawing.Color.White;
+            this.btnCrearPlantillas.Location = new System.Drawing.Point(100, 60);
+            this.btnCrearPlantillas.Name = "btnCrearPlantillas";
+            this.btnCrearPlantillas.Size = new System.Drawing.Size(91, 23);
+            this.btnCrearPlantillas.TabIndex = 48;
+            this.btnCrearPlantillas.Text = "Crear Plantillas";
+            this.btnCrearPlantillas.UseVisualStyleBackColor = false;
+            this.btnCrearPlantillas.Click += new System.EventHandler(this.btnCrearPlantillas_Click);
+            // 
             // ControlTareasFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.ClientSize = new System.Drawing.Size(1180, 557);
+            this.Controls.Add(this.label21);
             this.Controls.Add(this.cmbTipoTarea);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.label15);
@@ -807,6 +848,9 @@
         private System.Windows.Forms.RichTextBox rtbNotas;
         private System.Windows.Forms.TextBox txtTareaRevision;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Button btnAbrirCarpeta;
+        private System.Windows.Forms.Button btnCrearPlantillas;
     }
 }
 

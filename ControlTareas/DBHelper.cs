@@ -28,6 +28,23 @@ namespace ControlTareas
             }
         }
 
+        public void RegistrarConfiguracion(ConfiguracionModel configuracion)
+        {
+            using (var db = GetConexion())
+            {
+                //validar si el sprint existe
+                var res = db.Query<ConfiguracionModel>().Where(x => x.Id == configuracion.Id).ToList();
+
+                if (res.Count == 0)
+                {
+                    db.Insert(configuracion);
+                }
+                else {
+                    db.Update(configuracion);
+                }
+            }
+        }
+
         public List<SprintModel> LeerSprints()
         {
             List<SprintModel> Lista;
@@ -37,6 +54,17 @@ namespace ControlTareas
             }
 
             return Lista;
+        }
+
+        public ConfiguracionModel LeerConfiguracion()
+        {
+            ConfiguracionModel configuracion;
+            using (var db = GetConexion())
+            {
+                configuracion = db.Query<ConfiguracionModel>().FirstOrDefault();
+            }
+
+            return configuracion;
         }
 
         public Boolean VerificaExisteTarea(String NumeroTarea, int ID = 0) {

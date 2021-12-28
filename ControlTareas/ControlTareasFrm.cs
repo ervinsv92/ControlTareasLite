@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DocumentFormat.OpenXml.Wordprocessing;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -17,9 +18,17 @@ namespace ControlTareas
         DBHelper dbHelper = new DBHelper();
         List<TareaModel> ListaTareas;
         TareaModel _Tarea = null;
+        ConfiguracionModel _configuracion;
+        const string _RutaPlantillas = "Plantillas";
         public ControlTareasFrm()
         {
             InitializeComponent();
+
+            _configuracion = dbHelper.LeerConfiguracion();
+            if (_configuracion == null)
+            {
+                MessageBox.Show("Se debe configurar la Ruta base y el periodo actual.");
+            }
         }
 
         private void ControlTareasFrm_Load(object sender, EventArgs e)
@@ -82,41 +91,41 @@ namespace ControlTareas
             {
                 case (int)TipoTareaEnum.ProductBacklogItem:
                     gridTareas.Rows[fila].Cells["TipoTarea"].Value = "PBI";
-                    gridTareas.Rows[fila].Cells[0].Style.BackColor = Color.FromArgb(0, 199, 53);
+                    gridTareas.Rows[fila].Cells[0].Style.BackColor = System.Drawing.Color.FromArgb(0, 199, 53);
                     break;
                 case (int)TipoTareaEnum.Bug:
                     gridTareas.Rows[fila].Cells["TipoTarea"].Value = "BUG";
-                    gridTareas.Rows[fila].Cells[0].Style.BackColor = Color.FromArgb(0, 157, 201);
+                    gridTareas.Rows[fila].Cells[0].Style.BackColor = System.Drawing.Color.FromArgb(0, 157, 201);
                     break;
                 case (int)TipoTareaEnum.BugHelpDesk:
                     gridTareas.Rows[fila].Cells["TipoTarea"].Value = "BHD";
-                    gridTareas.Rows[fila].Cells[0].Style.BackColor = Color.FromArgb(229, 5, 47);
+                    gridTareas.Rows[fila].Cells[0].Style.BackColor = System.Drawing.Color.FromArgb(229, 5, 47);
                     break;
                 case (int)TipoTareaEnum.InternalImprovement:
                     gridTareas.Rows[fila].Cells["TipoTarea"].Value = "Internal";
-                    gridTareas.Rows[fila].Cells[0].Style.BackColor = Color.FromArgb(255, 112, 250);
+                    gridTareas.Rows[fila].Cells[0].Style.BackColor = System.Drawing.Color.FromArgb(255, 112, 250);
                     break;
                 case (int)TipoTareaEnum.Test:
                     gridTareas.Rows[fila].Cells["TipoTarea"].Value = "Test";
-                    gridTareas.Rows[fila].Cells[0].Style.BackColor = Color.FromArgb(188, 13, 252);
+                    gridTareas.Rows[fila].Cells[0].Style.BackColor = System.Drawing.Color.FromArgb(188, 13, 252);
                     break;
                 case (int)TipoTareaEnum.QA:
                     gridTareas.Rows[fila].Cells["TipoTarea"].Value = "QA";
-                    gridTareas.Rows[fila].Cells[0].Style.BackColor = Color.FromArgb(95, 47, 0);
+                    gridTareas.Rows[fila].Cells[0].Style.BackColor = System.Drawing.Color.FromArgb(95, 47, 0);
                     break;
             }
         }
 
         private void PintarEstado(int estado, int fila) {
             if (estado == (int)EstadoTareaEnum.Creada) {
-                gridTareas.Rows[fila].Cells["Tarea"].Style.BackColor = Color.White;
-                gridTareas.Rows[fila].Cells["Descripcion"].Style.BackColor = Color.White;
+                gridTareas.Rows[fila].Cells["Tarea"].Style.BackColor = System.Drawing.Color.White;
+                gridTareas.Rows[fila].Cells["Descripcion"].Style.BackColor = System.Drawing.Color.White;
             } else if (estado == (int)EstadoTareaEnum.Iniciada) {
-                gridTareas.Rows[fila].Cells["Tarea"].Style.BackColor = Color.FromArgb(254, 246, 91);
-                gridTareas.Rows[fila].Cells["Descripcion"].Style.BackColor = Color.FromArgb(254, 246, 91);
+                gridTareas.Rows[fila].Cells["Tarea"].Style.BackColor = System.Drawing.Color.FromArgb(254, 246, 91);
+                gridTareas.Rows[fila].Cells["Descripcion"].Style.BackColor = System.Drawing.Color.FromArgb(254, 246, 91);
             } else if (estado == (int)EstadoTareaEnum.Finalizada) {
-                gridTareas.Rows[fila].Cells["Tarea"].Style.BackColor = Color.LightGreen;
-                gridTareas.Rows[fila].Cells["Descripcion"].Style.BackColor = Color.LightGreen;
+                gridTareas.Rows[fila].Cells["Tarea"].Style.BackColor = System.Drawing.Color.LightGreen;
+                gridTareas.Rows[fila].Cells["Descripcion"].Style.BackColor = System.Drawing.Color.LightGreen;
             }
         }
 
@@ -380,6 +389,11 @@ namespace ControlTareas
         {
             if (e.KeyCode == Keys.Enter)
             {
+                if (_configuracion == null) {
+                    MessageBox.Show("Debe realizar la configuracion inicial para continuar.");
+                    return;
+                }
+
                 if (cmbSprint.Items.Count == 0 || cmbSprint.SelectedIndex < 0) {
                     MessageBox.Show("Debe seleccionar un sprint para continuar");
                     cmbSprint.Focus();
@@ -405,6 +419,13 @@ namespace ControlTareas
                         tarea.Descripcion = txtDescripcion.Text.Trim();
                         tarea.Sprint = Int32.Parse(cmbSprint.SelectedValue.ToString());
                         tarea.TipoTarea = Int32.Parse(cmbTipoTarea.SelectedValue.ToString());
+                        tarea.RutaCarpeta = _configuracion.RutaBase + "\\"+ _configuracion.Periodo.ToString()+"\\" + cmbSprint.SelectedValue.ToString() +"\\"+ txtNumeroTarea.Text.Trim();
+
+                        if (!Directory.Exists(tarea.RutaCarpeta))
+                        {
+                            Directory.CreateDirectory(tarea.RutaCarpeta);
+                        }
+
                         dbHelper.RegistrarTarea(tarea);
                         LlenarGridTareas(Int32.Parse(cmbSprint.SelectedValue.ToString()));
                         LimpiarCampos();
@@ -752,6 +773,14 @@ namespace ControlTareas
                     LlenarComboSprint();
                 }
             }
+            else if (e.KeyCode == Keys.F2) {
+                var formulario = new ConfiguracionFrm();
+                if (formulario.ShowDialog() == DialogResult.OK)
+                {
+                    //LlenarComboFuentes();
+                    //LlenarComboSprint();
+                }
+            }
         }
 
         private void btnGuardarNota_Click(object sender, EventArgs e)
@@ -858,6 +887,136 @@ namespace ControlTareas
                     dbHelper.ActualizarTarea(_Tarea);
                     ListaTareas[ListaTareas.FindLastIndex(x => x.Id == _Tarea.Id)] = _Tarea;
                 }
+            }
+        }
+
+        private void btnAbrirCarpeta_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("explorer.exe", _Tarea.RutaCarpeta);
+        }
+
+        private void btnCrearPlantillas_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string rutaActual = Directory.GetCurrentDirectory();
+                string rutaPlantillas = System.IO.Path.Combine(rutaActual, _RutaPlantillas);
+                string[] files = System.IO.Directory.GetFiles(rutaPlantillas);
+                string nombreArchivo = "";
+                string rutaDestino = "";
+
+                // Copy the files and overwrite destination files if they already exist.
+                foreach (string s in files)
+                {
+                    // Use static Path methods to extract only the file name from the path.
+                    nombreArchivo = System.IO.Path.GetFileName(s);
+                    rutaDestino = System.IO.Path.Combine(_Tarea.RutaCarpeta, nombreArchivo);
+                    System.IO.File.Copy(s, rutaDestino, false);
+                }
+
+                //string rutaCambios = System.IO.Path.Combine(_Tarea.RutaCarpeta, "PlantillaCambios.docs");
+                //IDictionary<String, BookmarkStart> bookmarkMap = new Dictionary<String, BookmarkStart>();
+                //bookmarkMap.Add("NumeroTarea", _Tarea.NumeroTarea.ToString());
+                //bookmarkMap.Add("NombreTarea", _Tarea.Descripcion);
+                //bookmarkMap.Add("Fuentes", );
+                //bookmarkMap.Add("FechaInicio", );
+                //bookmarkMap.Add("FechaFinal", );
+
+                //Plantilla Cambios
+
+                string rutaPantillaCambios = System.IO.Path.Combine(_Tarea.RutaCarpeta, "PlantillaCambios.docx");
+
+                Microsoft.Office.Interop.Word.Application wordApp = new Microsoft.Office.Interop.Word.Application();
+                Microsoft.Office.Interop.Word.Document document = wordApp.Documents.Open(rutaPantillaCambios);
+
+                wordApp.Visible = false;
+                
+                document.Bookmarks["NumeroTarea"].Select();
+                wordApp.Selection.TypeText(_Tarea.NumeroTarea);
+
+                document.Bookmarks["NombreTarea"].Select();
+                wordApp.Selection.TypeText(_Tarea.Descripcion);
+
+                string fuentes = "";
+                foreach (string fuente in _Tarea.ListaFuentes) {
+                    fuentes += fuente + "/";
+                }
+
+                fuentes = fuentes.Substring(0, fuentes.Length - 1);
+                document.Bookmarks["Fuentes"].Select();
+                wordApp.Selection.TypeText(fuentes);
+
+                string checkins = "";
+                foreach (string checkin in _Tarea.ListaCheckIn)
+                {
+                    checkins += checkin + "/";
+                }
+
+                checkins = checkins.Substring(0, checkins.Length - 1);
+                document.Bookmarks["CheckIn"].Select();
+                wordApp.Selection.TypeText(checkins);
+
+                document.Bookmarks["FechaInicio"].Select();
+                wordApp.Selection.TypeText(_Tarea.FechaInicio.ToString("dd/MM/yyyy"));
+
+                document.Bookmarks["FechaFinal"].Select();
+                wordApp.Selection.TypeText(_Tarea.FechaFin.ToString("dd/MM/yyyy"));
+
+                document.Save();
+                document.Close();
+                wordApp.Quit();
+
+                try
+                {
+                    checkins = checkins.Replace("/", "_");
+                    string plantillaCambiosNueva = System.IO.Path.Combine(_Tarea.RutaCarpeta, DateTime.Now.ToString("yyyyMMdd") + " " + "(SIIGC2) " + _Tarea.NumeroTarea.ToString() + "-"+ checkins +" "+ _Tarea.Descripcion+".docx");
+                    System.IO.File.Move(rutaPantillaCambios, plantillaCambiosNueva);
+                }
+                catch (Exception ex)
+                {
+
+                }
+
+                //PlantillaPruebas
+                string rutaPlantillaPruebas = System.IO.Path.Combine(_Tarea.RutaCarpeta, "PlantillaPruebas.docx");
+                wordApp = new Microsoft.Office.Interop.Word.Application();
+                document = wordApp.Documents.Open(rutaPlantillaPruebas);
+
+                wordApp.Visible = false;
+
+                document.Bookmarks["NumeroTarea"].Select();
+                wordApp.Selection.TypeText(_Tarea.NumeroTarea);
+
+                document.Bookmarks["NombreTarea"].Select();
+                wordApp.Selection.TypeText(_Tarea.Descripcion);
+
+                document.Bookmarks["Sprint"].Select();
+                wordApp.Selection.TypeText(_Tarea.Sprint.ToString());
+
+                document.Bookmarks["FechaPrueba"].Select();
+                wordApp.Selection.TypeText(_Tarea.FechaFin.ToString("dd/MM/yyyy"));
+
+                document.Bookmarks["TareaRevision"].Select();
+                wordApp.Selection.TypeText(_Tarea.NumeroTareaRevision);
+
+                document.Save();
+                document.Close();
+                wordApp.Quit();
+
+                try
+                {
+                    string plantillaPruebasNueva = System.IO.Path.Combine(_Tarea.RutaCarpeta, "(DEV) " + _Tarea.NumeroTarea.ToString() + "-" + _Tarea.NumeroTareaRevision + " " + _Tarea.Descripcion + " " + _Tarea.FechaFin.ToString("dd_MM_yyyy") + ".docx");
+                    System.IO.File.Move(rutaPlantillaPruebas, plantillaPruebasNueva);
+                }
+                catch (Exception ex)
+                {
+                }
+
+                MessageBox.Show("Creadas.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }
