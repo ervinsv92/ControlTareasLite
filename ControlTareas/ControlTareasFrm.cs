@@ -419,7 +419,11 @@ namespace ControlTareas
                         tarea.Descripcion = txtDescripcion.Text.Trim();
                         tarea.Sprint = Int32.Parse(cmbSprint.SelectedValue.ToString());
                         tarea.TipoTarea = Int32.Parse(cmbTipoTarea.SelectedValue.ToString());
-                        tarea.RutaCarpeta = _configuracion.RutaBase + "\\"+ _configuracion.Periodo.ToString()+"\\" + cmbSprint.SelectedValue.ToString() +"\\"+ txtNumeroTarea.Text.Trim();
+                        string descripcion = txtDescripcion.Text.Trim();
+                        if (descripcion.Length > 70) {
+                            descripcion = descripcion.Substring(0, 70);
+                        }
+                        tarea.RutaCarpeta = _configuracion.RutaBase + "\\"+ _configuracion.Periodo.ToString()+"\\" + Int32.Parse(cmbSprint.SelectedValue.ToString()).ToString("D3") +"\\"+ txtNumeroTarea.Text.Trim()+" "+ descripcion;
 
                         if (!Directory.Exists(tarea.RutaCarpeta))
                         {
@@ -460,6 +464,7 @@ namespace ControlTareas
             txtPrioridad.Text = _Tarea.Prioridad.ToString();
             txtTareaRevision.Text = _Tarea.NumeroTareaRevision;
             cmbTipoTareaCargada.SelectedValue = _Tarea.TipoTarea.ToString();
+            txtRutaCarpetaTarea.Text = _Tarea.RutaCarpeta;
             gridCheckIn.Rows.Clear();
             gridFuentes.Rows.Clear();
 
@@ -777,8 +782,9 @@ namespace ControlTareas
                 var formulario = new ConfiguracionFrm();
                 if (formulario.ShowDialog() == DialogResult.OK)
                 {
-                    //LlenarComboFuentes();
-                    //LlenarComboSprint();
+                    LimpiarTarea();
+                    LlenarGridTareas(Int32.Parse(cmbSprint.SelectedValue.ToString()));
+                    gridTareas.Focus();
                 }
             }
         }
@@ -892,7 +898,13 @@ namespace ControlTareas
 
         private void btnAbrirCarpeta_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("explorer.exe", _Tarea.RutaCarpeta);
+            if (_Tarea.RutaCarpeta != null && Directory.Exists(_Tarea.RutaCarpeta))
+            {
+                System.Diagnostics.Process.Start("explorer.exe", _Tarea.RutaCarpeta);
+            }
+            else {
+                MessageBox.Show("No se encuentra la ruta.");
+            }
         }
 
         private void btnCrearPlantillas_Click(object sender, EventArgs e)
@@ -914,14 +926,6 @@ namespace ControlTareas
                     System.IO.File.Copy(s, rutaDestino, false);
                 }
 
-                //string rutaCambios = System.IO.Path.Combine(_Tarea.RutaCarpeta, "PlantillaCambios.docs");
-                //IDictionary<String, BookmarkStart> bookmarkMap = new Dictionary<String, BookmarkStart>();
-                //bookmarkMap.Add("NumeroTarea", _Tarea.NumeroTarea.ToString());
-                //bookmarkMap.Add("NombreTarea", _Tarea.Descripcion);
-                //bookmarkMap.Add("Fuentes", );
-                //bookmarkMap.Add("FechaInicio", );
-                //bookmarkMap.Add("FechaFinal", );
-
                 //Plantilla Cambios
 
                 string rutaPantillaCambios = System.IO.Path.Combine(_Tarea.RutaCarpeta, "PlantillaCambios.docx");
@@ -938,21 +942,29 @@ namespace ControlTareas
                 wordApp.Selection.TypeText(_Tarea.Descripcion);
 
                 string fuentes = "";
-                foreach (string fuente in _Tarea.ListaFuentes) {
-                    fuentes += fuente + "/";
+                if (_Tarea.ListaFuentes != null && _Tarea.ListaFuentes.Count > 0) {
+                    foreach (string fuente in _Tarea.ListaFuentes)
+                    {
+                        fuentes += fuente + "/";
+                    }
+
+                    fuentes = fuentes.Substring(0, fuentes.Length - 1);
                 }
 
-                fuentes = fuentes.Substring(0, fuentes.Length - 1);
                 document.Bookmarks["Fuentes"].Select();
                 wordApp.Selection.TypeText(fuentes);
 
                 string checkins = "";
-                foreach (string checkin in _Tarea.ListaCheckIn)
-                {
-                    checkins += checkin + "/";
-                }
 
-                checkins = checkins.Substring(0, checkins.Length - 1);
+                if (_Tarea.ListaCheckIn != null && _Tarea.ListaCheckIn.Count > 0) {
+                    foreach (string checkin in _Tarea.ListaCheckIn)
+                    {
+                        checkins += checkin + "/";
+                    }
+
+                    checkins = checkins.Substring(0, checkins.Length - 1);
+                }
+                
                 document.Bookmarks["CheckIn"].Select();
                 wordApp.Selection.TypeText(checkins);
 
@@ -974,7 +986,7 @@ namespace ControlTareas
                 }
                 catch (Exception ex)
                 {
-
+                    Console.WriteLine("Renombrar plantilla cambios: ", ex.Message);
                 }
 
                 //PlantillaPruebas
@@ -1010,6 +1022,7 @@ namespace ControlTareas
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine("Renombrar plantilla prueba: ", ex.Message);
                 }
 
                 MessageBox.Show("Creadas.");
@@ -1017,6 +1030,31 @@ namespace ControlTareas
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void txtRutaCarpetaTarea_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (txtRutaCarpetaTarea.Text.Trim() == "") {
+                MessageBox.Show("Debe ingresar una ruta.");
+                return;
+            }
+
+            _Tarea.RutaCarpeta = txtRutaCarpetaTarea.Text;
+            dbHelper.ActualizarTarea(_Tarea);
+        }
+
+        private void btnBuscarRutaTarea_Click(object sender, EventArgs e)
+        {
+            using (var fd = new FolderBrowserDialog())
+            {
+                if (fd.ShowDialog() == System.Windows.Forms.DialogResult.OK && !string.IsNullOrWhiteSpace(fd.SelectedPath))
+                {
+                    txtRutaCarpetaTarea.Text = fd.SelectedPath;
+                    _Tarea.RutaCarpeta = txtRutaCarpetaTarea.Text;
+                    dbHelper.ActualizarTarea(_Tarea);
+
+                }
             }
         }
     }

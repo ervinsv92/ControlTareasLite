@@ -35,6 +35,8 @@
             this.label17 = new System.Windows.Forms.Label();
             this.panelTabs = new System.Windows.Forms.TabControl();
             this.tabInfo = new System.Windows.Forms.TabPage();
+            this.btnCrearPlantillas = new System.Windows.Forms.Button();
+            this.btnAbrirCarpeta = new System.Windows.Forms.Button();
             this.cmbFuentes = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.txtCheckIn = new System.Windows.Forms.TextBox();
@@ -85,8 +87,10 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.btnAbrirCarpeta = new System.Windows.Forms.Button();
-            this.btnCrearPlantillas = new System.Windows.Forms.Button();
+            this.tabRutaCarpetaTarea = new System.Windows.Forms.TabPage();
+            this.txtRutaCarpetaTarea = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.btnBuscarRutaTarea = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panelTabs.SuspendLayout();
             this.tabInfo.SuspendLayout();
@@ -94,6 +98,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridCheckIn)).BeginInit();
             this.tabNotas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridTareas)).BeginInit();
+            this.tabRutaCarpetaTarea.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -144,6 +149,7 @@
             // 
             this.panelTabs.Controls.Add(this.tabInfo);
             this.panelTabs.Controls.Add(this.tabNotas);
+            this.panelTabs.Controls.Add(this.tabRutaCarpetaTarea);
             this.panelTabs.Location = new System.Drawing.Point(6, 112);
             this.panelTabs.Name = "panelTabs";
             this.panelTabs.SelectedIndex = 0;
@@ -173,6 +179,30 @@
             this.tabInfo.Size = new System.Drawing.Size(529, 391);
             this.tabInfo.TabIndex = 0;
             this.tabInfo.Text = "Info";
+            // 
+            // btnCrearPlantillas
+            // 
+            this.btnCrearPlantillas.BackColor = System.Drawing.Color.DimGray;
+            this.btnCrearPlantillas.ForeColor = System.Drawing.Color.White;
+            this.btnCrearPlantillas.Location = new System.Drawing.Point(100, 60);
+            this.btnCrearPlantillas.Name = "btnCrearPlantillas";
+            this.btnCrearPlantillas.Size = new System.Drawing.Size(91, 23);
+            this.btnCrearPlantillas.TabIndex = 48;
+            this.btnCrearPlantillas.Text = "Crear Plantillas";
+            this.btnCrearPlantillas.UseVisualStyleBackColor = false;
+            this.btnCrearPlantillas.Click += new System.EventHandler(this.btnCrearPlantillas_Click);
+            // 
+            // btnAbrirCarpeta
+            // 
+            this.btnAbrirCarpeta.BackColor = System.Drawing.Color.DimGray;
+            this.btnAbrirCarpeta.ForeColor = System.Drawing.Color.White;
+            this.btnAbrirCarpeta.Location = new System.Drawing.Point(3, 60);
+            this.btnAbrirCarpeta.Name = "btnAbrirCarpeta";
+            this.btnAbrirCarpeta.Size = new System.Drawing.Size(91, 23);
+            this.btnAbrirCarpeta.TabIndex = 47;
+            this.btnAbrirCarpeta.Text = "Abrir Carpeta";
+            this.btnAbrirCarpeta.UseVisualStyleBackColor = false;
+            this.btnAbrirCarpeta.Click += new System.EventHandler(this.btnAbrirCarpeta_Click);
             // 
             // cmbFuentes
             // 
@@ -723,29 +753,49 @@
             this.label21.TabIndex = 36;
             this.label21.Text = "F2: Configuración";
             // 
-            // btnAbrirCarpeta
+            // tabRutaCarpetaTarea
             // 
-            this.btnAbrirCarpeta.BackColor = System.Drawing.Color.DimGray;
-            this.btnAbrirCarpeta.ForeColor = System.Drawing.Color.White;
-            this.btnAbrirCarpeta.Location = new System.Drawing.Point(3, 60);
-            this.btnAbrirCarpeta.Name = "btnAbrirCarpeta";
-            this.btnAbrirCarpeta.Size = new System.Drawing.Size(91, 23);
-            this.btnAbrirCarpeta.TabIndex = 47;
-            this.btnAbrirCarpeta.Text = "Abrir Carpeta";
-            this.btnAbrirCarpeta.UseVisualStyleBackColor = false;
-            this.btnAbrirCarpeta.Click += new System.EventHandler(this.btnAbrirCarpeta_Click);
+            this.tabRutaCarpetaTarea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tabRutaCarpetaTarea.Controls.Add(this.btnBuscarRutaTarea);
+            this.tabRutaCarpetaTarea.Controls.Add(this.txtRutaCarpetaTarea);
+            this.tabRutaCarpetaTarea.Controls.Add(this.label22);
+            this.tabRutaCarpetaTarea.Location = new System.Drawing.Point(4, 22);
+            this.tabRutaCarpetaTarea.Name = "tabRutaCarpetaTarea";
+            this.tabRutaCarpetaTarea.Padding = new System.Windows.Forms.Padding(3);
+            this.tabRutaCarpetaTarea.Size = new System.Drawing.Size(529, 391);
+            this.tabRutaCarpetaTarea.TabIndex = 2;
+            this.tabRutaCarpetaTarea.Text = "Ruta Carpeta";
             // 
-            // btnCrearPlantillas
+            // txtRutaCarpetaTarea
             // 
-            this.btnCrearPlantillas.BackColor = System.Drawing.Color.DimGray;
-            this.btnCrearPlantillas.ForeColor = System.Drawing.Color.White;
-            this.btnCrearPlantillas.Location = new System.Drawing.Point(100, 60);
-            this.btnCrearPlantillas.Name = "btnCrearPlantillas";
-            this.btnCrearPlantillas.Size = new System.Drawing.Size(91, 23);
-            this.btnCrearPlantillas.TabIndex = 48;
-            this.btnCrearPlantillas.Text = "Crear Plantillas";
-            this.btnCrearPlantillas.UseVisualStyleBackColor = false;
-            this.btnCrearPlantillas.Click += new System.EventHandler(this.btnCrearPlantillas_Click);
+            this.txtRutaCarpetaTarea.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRutaCarpetaTarea.Location = new System.Drawing.Point(6, 25);
+            this.txtRutaCarpetaTarea.Name = "txtRutaCarpetaTarea";
+            this.txtRutaCarpetaTarea.Size = new System.Drawing.Size(467, 23);
+            this.txtRutaCarpetaTarea.TabIndex = 10;
+            this.ttControles.SetToolTip(this.txtRutaCarpetaTarea, "Enter para editar número de tarea");
+            this.txtRutaCarpetaTarea.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRutaCarpetaTarea_KeyDown);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.Color.White;
+            this.label22.Location = new System.Drawing.Point(3, 4);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(92, 17);
+            this.label22.TabIndex = 9;
+            this.label22.Text = "Ruta Carpeta";
+            // 
+            // btnBuscarRutaTarea
+            // 
+            this.btnBuscarRutaTarea.Location = new System.Drawing.Point(479, 25);
+            this.btnBuscarRutaTarea.Name = "btnBuscarRutaTarea";
+            this.btnBuscarRutaTarea.Size = new System.Drawing.Size(44, 23);
+            this.btnBuscarRutaTarea.TabIndex = 11;
+            this.btnBuscarRutaTarea.Text = "...";
+            this.btnBuscarRutaTarea.UseVisualStyleBackColor = true;
+            this.btnBuscarRutaTarea.Click += new System.EventHandler(this.btnBuscarRutaTarea_Click);
             // 
             // ControlTareasFrm
             // 
@@ -787,6 +837,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridCheckIn)).EndInit();
             this.tabNotas.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridTareas)).EndInit();
+            this.tabRutaCarpetaTarea.ResumeLayout(false);
+            this.tabRutaCarpetaTarea.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -851,6 +903,10 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Button btnAbrirCarpeta;
         private System.Windows.Forms.Button btnCrearPlantillas;
+        private System.Windows.Forms.TabPage tabRutaCarpetaTarea;
+        private System.Windows.Forms.TextBox txtRutaCarpetaTarea;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Button btnBuscarRutaTarea;
     }
 }
 

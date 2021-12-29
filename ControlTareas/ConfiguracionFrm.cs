@@ -29,9 +29,7 @@ namespace ControlTareas
 
         private void btnGuardarConfiguracion_Click(object sender, EventArgs e)
         {
-            int isNumber;
-
-            var prueba = int.TryParse(txtPeriodoActual.Text.Trim(), out isNumber);
+            int isNumber;            
 
             if (!Directory.Exists(txtRutaBase.Text.Trim()))
             {
@@ -65,6 +63,56 @@ namespace ControlTareas
                     txtRutaBase.Text = fd.SelectedPath;
                 }
             }
+        }
+
+        private void btnRemapear_Click(object sender, EventArgs e)
+        {
+            int isNumber;
+            if (!int.TryParse(txtPeriodoMinimo.Text.Trim(), out isNumber) || txtPeriodoMinimo.Text.Trim().Length != 4)
+            {
+                MessageBox.Show("Digite un periodo valido.");
+                return;
+            }
+
+            int minimo = Int32.Parse(txtPeriodoMinimo.Text.Trim());
+            int actual = DateTime.Now.Year;
+            while (minimo<=actual)
+            {
+                string rutaCarpeta = configuracion.RutaBase + "\\" + minimo.ToString();
+                if (Directory.Exists(rutaCarpeta))
+                {
+                    var rutasSprints =  Directory.GetDirectories(rutaCarpeta);
+                    foreach (string rutaSprint in rutasSprints)
+                    {
+                        string numeroSprint = rutaSprint.Replace(rutaCarpeta+"\\", "");
+                        List<TareaModel> tareasSprint = dbHelper.LeerTareasSprint(Int32.Parse(numeroSprint));
+                        var rutaTareas = Directory.GetDirectories(rutaSprint);
+                        foreach (string rutaTarea in rutaTareas)
+                        {
+                            string numeroTarea = rutaTarea.Replace(rutaSprint + "\\", "").Split(" ".ToCharArray())[0];
+                            
+                            //para que no lea las carpetas 00001 ni las tareas 99999
+                            if (Int32.Parse(numeroTarea) > 9999 && numeroTarea != "99999") {
+                                int idx = tareasSprint.FindIndex(x => x.NumeroTarea == numeroTarea);
+                                if (idx > -1) {
+                                    tareasSprint[idx].RutaCarpeta = rutaTarea + "\\";
+                                    dbHelper.ActualizarTarea(tareasSprint[idx]);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                minimo++;
+            }
+
+            MessageBox.Show("Mapeo terminado.");
+        }
+
+        private void ConfiguracionFrm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
     }
 }
