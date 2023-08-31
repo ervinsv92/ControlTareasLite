@@ -59,8 +59,6 @@
             this.txtRutaCarpetaTarea = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.CheckListTab = new System.Windows.Forms.TabPage();
-            this.btnBorrarCheckItem = new System.Windows.Forms.Button();
-            this.clbItems = new System.Windows.Forms.CheckedListBox();
             this.txtDescripcionCheckItem = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.txtPrioridad = new System.Windows.Forms.TextBox();
@@ -96,6 +94,9 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
+            this.dtgItemsCheck = new System.Windows.Forms.DataGridView();
+            this.chkItemMarcado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.CheckItemText = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panelTabs.SuspendLayout();
             this.tabInfo.SuspendLayout();
@@ -105,6 +106,7 @@
             this.tabRutaCarpetaTarea.SuspendLayout();
             this.CheckListTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridTareas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgItemsCheck)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -455,8 +457,7 @@
             // CheckListTab
             // 
             this.CheckListTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.CheckListTab.Controls.Add(this.btnBorrarCheckItem);
-            this.CheckListTab.Controls.Add(this.clbItems);
+            this.CheckListTab.Controls.Add(this.dtgItemsCheck);
             this.CheckListTab.Controls.Add(this.txtDescripcionCheckItem);
             this.CheckListTab.Controls.Add(this.label23);
             this.CheckListTab.Location = new System.Drawing.Point(4, 22);
@@ -466,34 +467,12 @@
             this.CheckListTab.TabIndex = 3;
             this.CheckListTab.Text = "Check List";
             // 
-            // btnBorrarCheckItem
-            // 
-            this.btnBorrarCheckItem.BackColor = System.Drawing.Color.DimGray;
-            this.btnBorrarCheckItem.ForeColor = System.Drawing.Color.White;
-            this.btnBorrarCheckItem.Location = new System.Drawing.Point(432, 23);
-            this.btnBorrarCheckItem.Name = "btnBorrarCheckItem";
-            this.btnBorrarCheckItem.Size = new System.Drawing.Size(91, 23);
-            this.btnBorrarCheckItem.TabIndex = 47;
-            this.btnBorrarCheckItem.Text = "Borrar";
-            this.btnBorrarCheckItem.UseVisualStyleBackColor = false;
-            this.btnBorrarCheckItem.Click += new System.EventHandler(this.btnBorrarCheckItem_Click);
-            // 
-            // clbItems
-            // 
-            this.clbItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.clbItems.FormattingEnabled = true;
-            this.clbItems.Location = new System.Drawing.Point(9, 52);
-            this.clbItems.Name = "clbItems";
-            this.clbItems.Size = new System.Drawing.Size(514, 310);
-            this.clbItems.TabIndex = 42;
-            this.clbItems.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbItems_ItemCheck);
-            // 
             // txtDescripcionCheckItem
             // 
             this.txtDescripcionCheckItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescripcionCheckItem.Location = new System.Drawing.Point(9, 23);
             this.txtDescripcionCheckItem.Name = "txtDescripcionCheckItem";
-            this.txtDescripcionCheckItem.Size = new System.Drawing.Size(417, 23);
+            this.txtDescripcionCheckItem.Size = new System.Drawing.Size(514, 23);
             this.txtDescripcionCheckItem.TabIndex = 41;
             this.ttControles.SetToolTip(this.txtDescripcionCheckItem, "Enter para registrar Check In");
             this.txtDescripcionCheckItem.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDescripcionCheckItem_KeyDown);
@@ -861,6 +840,45 @@
             this.label21.TabIndex = 36;
             this.label21.Text = "F2: Configuración";
             // 
+            // dtgItemsCheck
+            // 
+            this.dtgItemsCheck.AllowUserToAddRows = false;
+            this.dtgItemsCheck.AllowUserToDeleteRows = false;
+            this.dtgItemsCheck.AllowUserToResizeColumns = false;
+            this.dtgItemsCheck.AllowUserToResizeRows = false;
+            this.dtgItemsCheck.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dtgItemsCheck.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgItemsCheck.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.chkItemMarcado,
+            this.CheckItemText});
+            this.dtgItemsCheck.Location = new System.Drawing.Point(10, 52);
+            this.dtgItemsCheck.MultiSelect = false;
+            this.dtgItemsCheck.Name = "dtgItemsCheck";
+            this.dtgItemsCheck.RowHeadersWidth = 5;
+            this.dtgItemsCheck.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dtgItemsCheck.Size = new System.Drawing.Size(513, 333);
+            this.dtgItemsCheck.TabIndex = 42;
+            this.ttControles.SetToolTip(this.dtgItemsCheck, "Se puede editar desde el grid");
+            this.dtgItemsCheck.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgItemsCheck_CellEndEdit);
+            this.dtgItemsCheck.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtgItemsCheck_KeyDown);
+            // 
+            // chkItemMarcado
+            // 
+            this.chkItemMarcado.DataPropertyName = "Marcada";
+            this.chkItemMarcado.HeaderText = "Check";
+            this.chkItemMarcado.Name = "chkItemMarcado";
+            this.chkItemMarcado.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.chkItemMarcado.Width = 50;
+            // 
+            // CheckItemText
+            // 
+            this.CheckItemText.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CheckItemText.DataPropertyName = "Descripcion";
+            this.CheckItemText.HeaderText = "Descripción";
+            this.CheckItemText.Name = "CheckItemText";
+            this.CheckItemText.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CheckItemText.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // ControlTareasFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -905,6 +923,7 @@
             this.CheckListTab.ResumeLayout(false);
             this.CheckListTab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridTareas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgItemsCheck)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -974,10 +993,11 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Button btnBuscarRutaTarea;
         private System.Windows.Forms.TabPage CheckListTab;
-        private System.Windows.Forms.CheckedListBox clbItems;
         private System.Windows.Forms.TextBox txtDescripcionCheckItem;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Button btnBorrarCheckItem;
+        private System.Windows.Forms.DataGridView dtgItemsCheck;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn chkItemMarcado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CheckItemText;
     }
 }
 

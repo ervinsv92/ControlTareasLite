@@ -32,6 +32,7 @@ namespace ControlTareas
 
         private void ControlTareasFrm_Load(object sender, EventArgs e)
         {
+            dtgItemsCheck.AutoGenerateColumns = false;
             LlenarComboEstadoTarea();
             LlenarComboSprint();
             LlenarComboFuentes();
@@ -85,7 +86,8 @@ namespace ControlTareas
             }
         }
 
-        private void PintarTipoTarea(int TipoTarea, int fila) {
+        private void PintarTipoTarea(int TipoTarea, int fila)
+        {
             switch (TipoTarea)
             {
                 case (int)TipoTareaEnum.ProductBacklogItem:
@@ -115,14 +117,20 @@ namespace ControlTareas
             }
         }
 
-        private void PintarEstado(int estado, int fila) {
-            if (estado == (int)EstadoTareaEnum.Creada) {
+        private void PintarEstado(int estado, int fila)
+        {
+            if (estado == (int)EstadoTareaEnum.Creada)
+            {
                 gridTareas.Rows[fila].Cells["Tarea"].Style.BackColor = System.Drawing.Color.White;
                 gridTareas.Rows[fila].Cells["Descripcion"].Style.BackColor = System.Drawing.Color.White;
-            } else if (estado == (int)EstadoTareaEnum.Iniciada) {
+            }
+            else if (estado == (int)EstadoTareaEnum.Iniciada)
+            {
                 gridTareas.Rows[fila].Cells["Tarea"].Style.BackColor = System.Drawing.Color.FromArgb(254, 246, 91);
                 gridTareas.Rows[fila].Cells["Descripcion"].Style.BackColor = System.Drawing.Color.FromArgb(254, 246, 91);
-            } else if (estado == (int)EstadoTareaEnum.Finalizada) {
+            }
+            else if (estado == (int)EstadoTareaEnum.Finalizada)
+            {
                 gridTareas.Rows[fila].Cells["Tarea"].Style.BackColor = System.Drawing.Color.LightGreen;
                 gridTareas.Rows[fila].Cells["Descripcion"].Style.BackColor = System.Drawing.Color.LightGreen;
             }
@@ -388,12 +396,14 @@ namespace ControlTareas
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (_configuracion == null) {
+                if (_configuracion == null)
+                {
                     MessageBox.Show("Debe realizar la configuracion inicial para continuar.");
                     return;
                 }
 
-                if (cmbSprint.Items.Count == 0 || cmbSprint.SelectedIndex < 0) {
+                if (cmbSprint.Items.Count == 0 || cmbSprint.SelectedIndex < 0)
+                {
                     MessageBox.Show("Debe seleccionar un sprint para continuar");
                     cmbSprint.Focus();
                     return;
@@ -419,10 +429,11 @@ namespace ControlTareas
                         tarea.Sprint = Int32.Parse(cmbSprint.SelectedValue.ToString());
                         tarea.TipoTarea = Int32.Parse(cmbTipoTarea.SelectedValue.ToString());
                         string descripcion = txtDescripcion.Text.Trim();
-                        if (descripcion.Length > 70) {
+                        if (descripcion.Length > 70)
+                        {
                             descripcion = descripcion.Substring(0, 70);
                         }
-                        tarea.RutaCarpeta = _configuracion.RutaBase + "\\"+ _configuracion.Periodo.ToString()+"\\" + Int32.Parse(cmbSprint.SelectedValue.ToString()).ToString("D3") +"\\"+ txtNumeroTarea.Text.Trim()+" "+ descripcion;
+                        tarea.RutaCarpeta = _configuracion.RutaBase + "\\" + _configuracion.Periodo.ToString() + "\\" + Int32.Parse(cmbSprint.SelectedValue.ToString()).ToString("D3") + "\\" + txtNumeroTarea.Text.Trim() + " " + descripcion;
 
                         if (!Directory.Exists(tarea.RutaCarpeta))
                         {
@@ -466,6 +477,7 @@ namespace ControlTareas
             txtRutaCarpetaTarea.Text = _Tarea.RutaCarpeta;
             gridCheckIn.Rows.Clear();
             gridFuentes.Rows.Clear();
+            dtgItemsCheck.Rows.Clear();
 
             if (_Tarea.ListaCheckIn != null)
             {
@@ -487,11 +499,11 @@ namespace ControlTareas
 
             if (_Tarea.ListaChecks != null)
             {
-                clbItems.Items.Clear();
-                
-                foreach (CheckItem item in _Tarea.ListaChecks)
+                foreach (CheckItem Item in _Tarea.ListaChecks)
                 {
-                    clbItems.Items.Add(item.Descripcion, item.Marcada);
+                    dtgItemsCheck.Rows.Add();
+                    dtgItemsCheck.Rows[dtgItemsCheck.Rows.Count - 1].Cells["chkItemMarcado"].Value = Item.Marcada;
+                    dtgItemsCheck.Rows[dtgItemsCheck.Rows.Count - 1].Cells["CheckItemText"].Value = Item.Descripcion;
                 }
             }
         }
@@ -607,7 +619,8 @@ namespace ControlTareas
                     LimpiarTarea();
                     lblCantidad.Text = gridTareas.Rows.Count.ToString();
 
-                    if (gridTareas.RowCount > 0) {
+                    if (gridTareas.RowCount > 0)
+                    {
                         gridTareas.Rows[0].Cells[0].Selected = true;
                     }
                 }
@@ -787,7 +800,8 @@ namespace ControlTareas
                     LlenarComboSprint();
                 }
             }
-            else if (e.KeyCode == Keys.F2) {
+            else if (e.KeyCode == Keys.F2)
+            {
                 var formulario = new ConfiguracionFrm();
                 if (formulario.ShowDialog() == DialogResult.OK)
                 {
@@ -800,7 +814,8 @@ namespace ControlTareas
 
         private void btnGuardarNota_Click(object sender, EventArgs e)
         {
-            if (_Tarea != null) {
+            if (_Tarea != null)
+            {
                 _Tarea.Notas = rtbNotas.Text.Trim();
                 dbHelper.ActualizarTarea(_Tarea);
                 ListaTareas[ListaTareas.FindLastIndex(x => x.Id == _Tarea.Id)] = _Tarea;
@@ -816,7 +831,7 @@ namespace ControlTareas
                 CargarTarea();
                 panelTabs.SelectTab(0);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
             }
         }
@@ -911,7 +926,8 @@ namespace ControlTareas
             {
                 System.Diagnostics.Process.Start("explorer.exe", _Tarea.RutaCarpeta);
             }
-            else {
+            else
+            {
                 MessageBox.Show("No se encuentra la ruta.");
             }
         }
@@ -943,7 +959,7 @@ namespace ControlTareas
                 Microsoft.Office.Interop.Word.Document document = wordApp.Documents.Open(rutaPantillaCambios);
 
                 wordApp.Visible = false;
-                
+
                 document.Bookmarks["NumeroTarea"].Select();
                 wordApp.Selection.TypeText(_Tarea.NumeroTarea);
 
@@ -951,7 +967,8 @@ namespace ControlTareas
                 wordApp.Selection.TypeText(_Tarea.Descripcion);
 
                 string fuentes = "";
-                if (_Tarea.ListaFuentes != null && _Tarea.ListaFuentes.Count > 0) {
+                if (_Tarea.ListaFuentes != null && _Tarea.ListaFuentes.Count > 0)
+                {
                     foreach (string fuente in _Tarea.ListaFuentes)
                     {
                         fuentes += fuente + "/";
@@ -965,7 +982,8 @@ namespace ControlTareas
 
                 string checkins = "";
 
-                if (_Tarea.ListaCheckIn != null && _Tarea.ListaCheckIn.Count > 0) {
+                if (_Tarea.ListaCheckIn != null && _Tarea.ListaCheckIn.Count > 0)
+                {
                     foreach (string checkin in _Tarea.ListaCheckIn)
                     {
                         checkins += checkin + "/";
@@ -973,7 +991,7 @@ namespace ControlTareas
 
                     checkins = checkins.Substring(0, checkins.Length - 1);
                 }
-                
+
                 document.Bookmarks["CheckIn"].Select();
                 wordApp.Selection.TypeText(checkins);
 
@@ -990,7 +1008,7 @@ namespace ControlTareas
                 try
                 {
                     checkins = checkins.Replace("/", "_");
-                    string plantillaCambiosNueva = System.IO.Path.Combine(_Tarea.RutaCarpeta, DateTime.Now.ToString("yyyyMMdd") + " " + "(SIIGC2) " + _Tarea.NumeroTarea.ToString() + "-"+ checkins +" "+ _Tarea.Descripcion+".docx");
+                    string plantillaCambiosNueva = System.IO.Path.Combine(_Tarea.RutaCarpeta, DateTime.Now.ToString("yyyyMMdd") + " " + "(SIIGC2) " + _Tarea.NumeroTarea.ToString() + "-" + checkins + " " + _Tarea.Descripcion + ".docx");
                     System.IO.File.Move(rutaPantillaCambios, plantillaCambiosNueva);
                 }
                 catch (Exception ex)
@@ -1044,7 +1062,8 @@ namespace ControlTareas
 
         private void txtRutaCarpetaTarea_KeyDown(object sender, KeyEventArgs e)
         {
-            if (txtRutaCarpetaTarea.Text.Trim() == "") {
+            if (txtRutaCarpetaTarea.Text.Trim() == "")
+            {
                 MessageBox.Show("Debe ingresar una ruta.");
                 return;
             }
@@ -1094,21 +1113,35 @@ namespace ControlTareas
             }
         }
 
-        private void clbItems_ItemCheck(object sender, ItemCheckEventArgs e)
+        private void dtgItemsCheck_KeyDown(object sender, KeyEventArgs e)
         {
-            ListaTareas[ListaTareas.FindLastIndex(x => x.Id == _Tarea.Id)].ListaChecks[e.Index].Marcada = (e.NewValue == CheckState.Checked)?true:false;
-            dbHelper.ActualizarTarea(_Tarea);
-        }
-
-        private void btnBorrarCheckItem_Click(object sender, EventArgs e)
-        {
-            if(clbItems.SelectedIndex > -1)
+            if (e.KeyCode == Keys.Delete && dtgItemsCheck.RowCount > 0 && dtgItemsCheck.CurrentCell.RowIndex >= 0)
             {
-                if(MessageBox.Show("¿Seguro que desea borrar?", "",MessageBoxButtons.OKCancel)==DialogResult.OK){
-                    ListaTareas[ListaTareas.FindLastIndex(x => x.Id == _Tarea.Id)].ListaChecks.RemoveAt(clbItems.SelectedIndex);
-                    clbItems.Items.RemoveAt(clbItems.SelectedIndex);
+
+                int filaActual = dtgItemsCheck.CurrentCell.RowIndex;
+
+                if (MessageBox.Show("¿Desea borrar el check Item?", "Eliminar Check Item", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    _Tarea.ListaChecks.RemoveAt(filaActual);
+                    dtgItemsCheck.Rows.RemoveAt(filaActual);
                     dbHelper.ActualizarTarea(_Tarea);
+                    ListaTareas[ListaTareas.FindLastIndex(x => x.Id == _Tarea.Id)] = _Tarea;
                 }
+            }
+        }
+        private void dtgItemsCheck_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dtgItemsCheck.Columns[e.ColumnIndex].Name == "CheckItemText")
+            {
+                _Tarea.ListaChecks[e.RowIndex].Descripcion = dtgItemsCheck.Rows[e.RowIndex].Cells["CheckItemText"].Value.ToString().Trim();
+                dbHelper.ActualizarTarea(_Tarea);
+                ListaTareas[ListaTareas.FindLastIndex(x => x.Id == _Tarea.Id)] = _Tarea;
+            }
+            else if(dtgItemsCheck.Columns[e.ColumnIndex].Name == "chkItemMarcado")
+            {
+                _Tarea.ListaChecks[e.RowIndex].Marcada = (bool)dtgItemsCheck.Rows[e.RowIndex].Cells["chkItemMarcado"].Value;
+                dbHelper.ActualizarTarea(_Tarea);
+                ListaTareas[ListaTareas.FindLastIndex(x => x.Id == _Tarea.Id)] = _Tarea;
             }
         }
     }
