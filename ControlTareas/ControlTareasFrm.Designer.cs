@@ -54,6 +54,14 @@
             this.tabNotas = new System.Windows.Forms.TabPage();
             this.btnGuardarNota = new System.Windows.Forms.Button();
             this.rtbNotas = new System.Windows.Forms.RichTextBox();
+            this.tabRutaCarpetaTarea = new System.Windows.Forms.TabPage();
+            this.btnBuscarRutaTarea = new System.Windows.Forms.Button();
+            this.txtRutaCarpetaTarea = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.CheckListTab = new System.Windows.Forms.TabPage();
+            this.clbItems = new System.Windows.Forms.CheckedListBox();
+            this.txtDescripcionCheckItem = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
             this.txtPrioridad = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.cmbTipoTareaCargada = new System.Windows.Forms.ComboBox();
@@ -87,18 +95,16 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.tabRutaCarpetaTarea = new System.Windows.Forms.TabPage();
-            this.txtRutaCarpetaTarea = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.btnBuscarRutaTarea = new System.Windows.Forms.Button();
+            this.btnBorrarCheckItem = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panelTabs.SuspendLayout();
             this.tabInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridFuentes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCheckIn)).BeginInit();
             this.tabNotas.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridTareas)).BeginInit();
             this.tabRutaCarpetaTarea.SuspendLayout();
+            this.CheckListTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridTareas)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -150,6 +156,7 @@
             this.panelTabs.Controls.Add(this.tabInfo);
             this.panelTabs.Controls.Add(this.tabNotas);
             this.panelTabs.Controls.Add(this.tabRutaCarpetaTarea);
+            this.panelTabs.Controls.Add(this.CheckListTab);
             this.panelTabs.Location = new System.Drawing.Point(6, 112);
             this.panelTabs.Name = "panelTabs";
             this.panelTabs.SelectedIndex = 0;
@@ -400,6 +407,95 @@
             this.rtbNotas.Size = new System.Drawing.Size(517, 350);
             this.rtbNotas.TabIndex = 45;
             this.rtbNotas.Text = "";
+            // 
+            // tabRutaCarpetaTarea
+            // 
+            this.tabRutaCarpetaTarea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.tabRutaCarpetaTarea.Controls.Add(this.btnBuscarRutaTarea);
+            this.tabRutaCarpetaTarea.Controls.Add(this.txtRutaCarpetaTarea);
+            this.tabRutaCarpetaTarea.Controls.Add(this.label22);
+            this.tabRutaCarpetaTarea.Location = new System.Drawing.Point(4, 22);
+            this.tabRutaCarpetaTarea.Name = "tabRutaCarpetaTarea";
+            this.tabRutaCarpetaTarea.Padding = new System.Windows.Forms.Padding(3);
+            this.tabRutaCarpetaTarea.Size = new System.Drawing.Size(529, 391);
+            this.tabRutaCarpetaTarea.TabIndex = 2;
+            this.tabRutaCarpetaTarea.Text = "Ruta Carpeta";
+            // 
+            // btnBuscarRutaTarea
+            // 
+            this.btnBuscarRutaTarea.Location = new System.Drawing.Point(479, 25);
+            this.btnBuscarRutaTarea.Name = "btnBuscarRutaTarea";
+            this.btnBuscarRutaTarea.Size = new System.Drawing.Size(44, 23);
+            this.btnBuscarRutaTarea.TabIndex = 11;
+            this.btnBuscarRutaTarea.Text = "...";
+            this.btnBuscarRutaTarea.UseVisualStyleBackColor = true;
+            this.btnBuscarRutaTarea.Click += new System.EventHandler(this.btnBuscarRutaTarea_Click);
+            // 
+            // txtRutaCarpetaTarea
+            // 
+            this.txtRutaCarpetaTarea.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRutaCarpetaTarea.Location = new System.Drawing.Point(6, 25);
+            this.txtRutaCarpetaTarea.Name = "txtRutaCarpetaTarea";
+            this.txtRutaCarpetaTarea.Size = new System.Drawing.Size(467, 23);
+            this.txtRutaCarpetaTarea.TabIndex = 10;
+            this.ttControles.SetToolTip(this.txtRutaCarpetaTarea, "Enter para editar número de tarea");
+            this.txtRutaCarpetaTarea.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRutaCarpetaTarea_KeyDown);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.Color.White;
+            this.label22.Location = new System.Drawing.Point(3, 4);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(92, 17);
+            this.label22.TabIndex = 9;
+            this.label22.Text = "Ruta Carpeta";
+            // 
+            // CheckListTab
+            // 
+            this.CheckListTab.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.CheckListTab.Controls.Add(this.btnBorrarCheckItem);
+            this.CheckListTab.Controls.Add(this.clbItems);
+            this.CheckListTab.Controls.Add(this.txtDescripcionCheckItem);
+            this.CheckListTab.Controls.Add(this.label23);
+            this.CheckListTab.Location = new System.Drawing.Point(4, 22);
+            this.CheckListTab.Name = "CheckListTab";
+            this.CheckListTab.Padding = new System.Windows.Forms.Padding(3);
+            this.CheckListTab.Size = new System.Drawing.Size(529, 391);
+            this.CheckListTab.TabIndex = 3;
+            this.CheckListTab.Text = "Check List";
+            // 
+            // clbItems
+            // 
+            this.clbItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clbItems.FormattingEnabled = true;
+            this.clbItems.Location = new System.Drawing.Point(9, 52);
+            this.clbItems.Name = "clbItems";
+            this.clbItems.Size = new System.Drawing.Size(514, 319);
+            this.clbItems.TabIndex = 42;
+            this.clbItems.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbItems_ItemCheck);
+            // 
+            // txtDescripcionCheckItem
+            // 
+            this.txtDescripcionCheckItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDescripcionCheckItem.Location = new System.Drawing.Point(9, 23);
+            this.txtDescripcionCheckItem.Name = "txtDescripcionCheckItem";
+            this.txtDescripcionCheckItem.Size = new System.Drawing.Size(203, 23);
+            this.txtDescripcionCheckItem.TabIndex = 41;
+            this.ttControles.SetToolTip(this.txtDescripcionCheckItem, "Enter para registrar Check In");
+            this.txtDescripcionCheckItem.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDescripcionCheckItem_KeyDown);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.ForeColor = System.Drawing.Color.White;
+            this.label23.Location = new System.Drawing.Point(6, 3);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(82, 17);
+            this.label23.TabIndex = 32;
+            this.label23.Text = "Descripción";
             // 
             // txtPrioridad
             // 
@@ -753,49 +849,17 @@
             this.label21.TabIndex = 36;
             this.label21.Text = "F2: Configuración";
             // 
-            // tabRutaCarpetaTarea
+            // btnBorrarCheckItem
             // 
-            this.tabRutaCarpetaTarea.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.tabRutaCarpetaTarea.Controls.Add(this.btnBuscarRutaTarea);
-            this.tabRutaCarpetaTarea.Controls.Add(this.txtRutaCarpetaTarea);
-            this.tabRutaCarpetaTarea.Controls.Add(this.label22);
-            this.tabRutaCarpetaTarea.Location = new System.Drawing.Point(4, 22);
-            this.tabRutaCarpetaTarea.Name = "tabRutaCarpetaTarea";
-            this.tabRutaCarpetaTarea.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRutaCarpetaTarea.Size = new System.Drawing.Size(529, 391);
-            this.tabRutaCarpetaTarea.TabIndex = 2;
-            this.tabRutaCarpetaTarea.Text = "Ruta Carpeta";
-            // 
-            // txtRutaCarpetaTarea
-            // 
-            this.txtRutaCarpetaTarea.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRutaCarpetaTarea.Location = new System.Drawing.Point(6, 25);
-            this.txtRutaCarpetaTarea.Name = "txtRutaCarpetaTarea";
-            this.txtRutaCarpetaTarea.Size = new System.Drawing.Size(467, 23);
-            this.txtRutaCarpetaTarea.TabIndex = 10;
-            this.ttControles.SetToolTip(this.txtRutaCarpetaTarea, "Enter para editar número de tarea");
-            this.txtRutaCarpetaTarea.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtRutaCarpetaTarea_KeyDown);
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.ForeColor = System.Drawing.Color.White;
-            this.label22.Location = new System.Drawing.Point(3, 4);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(92, 17);
-            this.label22.TabIndex = 9;
-            this.label22.Text = "Ruta Carpeta";
-            // 
-            // btnBuscarRutaTarea
-            // 
-            this.btnBuscarRutaTarea.Location = new System.Drawing.Point(479, 25);
-            this.btnBuscarRutaTarea.Name = "btnBuscarRutaTarea";
-            this.btnBuscarRutaTarea.Size = new System.Drawing.Size(44, 23);
-            this.btnBuscarRutaTarea.TabIndex = 11;
-            this.btnBuscarRutaTarea.Text = "...";
-            this.btnBuscarRutaTarea.UseVisualStyleBackColor = true;
-            this.btnBuscarRutaTarea.Click += new System.EventHandler(this.btnBuscarRutaTarea_Click);
+            this.btnBorrarCheckItem.BackColor = System.Drawing.Color.DimGray;
+            this.btnBorrarCheckItem.ForeColor = System.Drawing.Color.White;
+            this.btnBorrarCheckItem.Location = new System.Drawing.Point(432, 23);
+            this.btnBorrarCheckItem.Name = "btnBorrarCheckItem";
+            this.btnBorrarCheckItem.Size = new System.Drawing.Size(91, 23);
+            this.btnBorrarCheckItem.TabIndex = 47;
+            this.btnBorrarCheckItem.Text = "Borrar";
+            this.btnBorrarCheckItem.UseVisualStyleBackColor = false;
+            this.btnBorrarCheckItem.Click += new System.EventHandler(this.btnBorrarCheckItem_Click);
             // 
             // ControlTareasFrm
             // 
@@ -836,9 +900,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridFuentes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCheckIn)).EndInit();
             this.tabNotas.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridTareas)).EndInit();
             this.tabRutaCarpetaTarea.ResumeLayout(false);
             this.tabRutaCarpetaTarea.PerformLayout();
+            this.CheckListTab.ResumeLayout(false);
+            this.CheckListTab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridTareas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -907,6 +973,11 @@
         private System.Windows.Forms.TextBox txtRutaCarpetaTarea;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Button btnBuscarRutaTarea;
+        private System.Windows.Forms.TabPage CheckListTab;
+        private System.Windows.Forms.CheckedListBox clbItems;
+        private System.Windows.Forms.TextBox txtDescripcionCheckItem;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Button btnBorrarCheckItem;
     }
 }
 

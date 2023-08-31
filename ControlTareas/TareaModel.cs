@@ -24,6 +24,7 @@ namespace ControlTareas
         public int TipoTarea { get; set; }
         public string NumeroTareaRevision { get; set; }
         public string RutaCarpeta { get; set; }
+        public List<CheckItem> ListaChecks { get; set; }
 
         public TareaModel() {
             this.FechaRegistro = DateTime.Now;

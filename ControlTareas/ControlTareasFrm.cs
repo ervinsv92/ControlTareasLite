@@ -484,6 +484,16 @@ namespace ControlTareas
                     gridFuentes.Rows[gridFuentes.Rows.Count - 1].Cells["Fuentes"].Value = Fuente;
                 }
             }
+
+            if (_Tarea.ListaChecks != null)
+            {
+                clbItems.Items.Clear();
+                
+                foreach (CheckItem item in _Tarea.ListaChecks)
+                {
+                    clbItems.Items.Add(item.Descripcion, item.Marcada);
+                }
+            }
         }
 
         private void txtTareaCargada_KeyDown(object sender, KeyEventArgs e)
@@ -1053,6 +1063,51 @@ namespace ControlTareas
                     _Tarea.RutaCarpeta = txtRutaCarpetaTarea.Text;
                     dbHelper.ActualizarTarea(_Tarea);
 
+                }
+            }
+        }
+
+        private void txtDescripcionCheckItem_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (_Tarea != null)
+                {
+                    if (txtDescripcionCheckItem.Text.Trim() == "")
+                    {
+                        MessageBox.Show("La descripción no debe ir en blanco");
+                        return;
+                    }
+
+                    if (_Tarea.ListaChecks == null)
+                    {
+                        _Tarea.ListaChecks = new List<CheckItem>();
+                    }
+
+                    _Tarea.ListaChecks.Add(new CheckItem { Descripcion = txtDescripcionCheckItem.Text.Trim() });
+
+                    dbHelper.ActualizarTarea(_Tarea);
+                    ListaTareas[ListaTareas.FindLastIndex(x => x.Id == _Tarea.Id)] = _Tarea;
+                    txtDescripcionCheckItem.Text = "";
+                    CargarTarea();
+                }
+            }
+        }
+
+        private void clbItems_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            ListaTareas[ListaTareas.FindLastIndex(x => x.Id == _Tarea.Id)].ListaChecks[e.Index].Marcada = (e.NewValue == CheckState.Checked)?true:false;
+            dbHelper.ActualizarTarea(_Tarea);
+        }
+
+        private void btnBorrarCheckItem_Click(object sender, EventArgs e)
+        {
+            if(clbItems.SelectedIndex > -1)
+            {
+                if(MessageBox.Show("¿Seguro que desea borrar?", "",MessageBoxButtons.OKCancel)==DialogResult.OK){
+                    ListaTareas[ListaTareas.FindLastIndex(x => x.Id == _Tarea.Id)].ListaChecks.RemoveAt(clbItems.SelectedIndex);
+                    clbItems.Items.RemoveAt(clbItems.SelectedIndex);
+                    dbHelper.ActualizarTarea(_Tarea);
                 }
             }
         }
