@@ -59,6 +59,7 @@
             this.txtRutaCarpetaTarea = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.CheckListTab = new System.Windows.Forms.TabPage();
+            this.btnBorrarCheckItem = new System.Windows.Forms.Button();
             this.clbItems = new System.Windows.Forms.CheckedListBox();
             this.txtDescripcionCheckItem = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
@@ -95,7 +96,6 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.btnBorrarCheckItem = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panelTabs.SuspendLayout();
             this.tabInfo.SuspendLayout();
@@ -466,13 +466,25 @@
             this.CheckListTab.TabIndex = 3;
             this.CheckListTab.Text = "Check List";
             // 
+            // btnBorrarCheckItem
+            // 
+            this.btnBorrarCheckItem.BackColor = System.Drawing.Color.DimGray;
+            this.btnBorrarCheckItem.ForeColor = System.Drawing.Color.White;
+            this.btnBorrarCheckItem.Location = new System.Drawing.Point(432, 23);
+            this.btnBorrarCheckItem.Name = "btnBorrarCheckItem";
+            this.btnBorrarCheckItem.Size = new System.Drawing.Size(91, 23);
+            this.btnBorrarCheckItem.TabIndex = 47;
+            this.btnBorrarCheckItem.Text = "Borrar";
+            this.btnBorrarCheckItem.UseVisualStyleBackColor = false;
+            this.btnBorrarCheckItem.Click += new System.EventHandler(this.btnBorrarCheckItem_Click);
+            // 
             // clbItems
             // 
             this.clbItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.clbItems.FormattingEnabled = true;
             this.clbItems.Location = new System.Drawing.Point(9, 52);
             this.clbItems.Name = "clbItems";
-            this.clbItems.Size = new System.Drawing.Size(514, 319);
+            this.clbItems.Size = new System.Drawing.Size(514, 310);
             this.clbItems.TabIndex = 42;
             this.clbItems.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbItems_ItemCheck);
             // 
@@ -481,7 +493,7 @@
             this.txtDescripcionCheckItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescripcionCheckItem.Location = new System.Drawing.Point(9, 23);
             this.txtDescripcionCheckItem.Name = "txtDescripcionCheckItem";
-            this.txtDescripcionCheckItem.Size = new System.Drawing.Size(203, 23);
+            this.txtDescripcionCheckItem.Size = new System.Drawing.Size(417, 23);
             this.txtDescripcionCheckItem.TabIndex = 41;
             this.ttControles.SetToolTip(this.txtDescripcionCheckItem, "Enter para registrar Check In");
             this.txtDescripcionCheckItem.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDescripcionCheckItem_KeyDown);
@@ -848,18 +860,6 @@
             this.label21.Size = new System.Drawing.Size(119, 17);
             this.label21.TabIndex = 36;
             this.label21.Text = "F2: Configuración";
-            // 
-            // btnBorrarCheckItem
-            // 
-            this.btnBorrarCheckItem.BackColor = System.Drawing.Color.DimGray;
-            this.btnBorrarCheckItem.ForeColor = System.Drawing.Color.White;
-            this.btnBorrarCheckItem.Location = new System.Drawing.Point(432, 23);
-            this.btnBorrarCheckItem.Name = "btnBorrarCheckItem";
-            this.btnBorrarCheckItem.Size = new System.Drawing.Size(91, 23);
-            this.btnBorrarCheckItem.TabIndex = 47;
-            this.btnBorrarCheckItem.Text = "Borrar";
-            this.btnBorrarCheckItem.UseVisualStyleBackColor = false;
-            this.btnBorrarCheckItem.Click += new System.EventHandler(this.btnBorrarCheckItem_Click);
             // 
             // ControlTareasFrm
             // 
