@@ -59,6 +59,9 @@
             this.txtRutaCarpetaTarea = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.CheckListTab = new System.Windows.Forms.TabPage();
+            this.dtgItemsCheck = new System.Windows.Forms.DataGridView();
+            this.chkItemMarcado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.CheckItemText = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtDescripcionCheckItem = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.txtPrioridad = new System.Windows.Forms.TextBox();
@@ -94,9 +97,8 @@
             this.label15 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.dtgItemsCheck = new System.Windows.Forms.DataGridView();
-            this.chkItemMarcado = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.CheckItemText = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.webViewTab = new System.Windows.Forms.TabPage();
+            this.wvTiempo = new Microsoft.Web.WebView2.WinForms.WebView2();
             this.panel1.SuspendLayout();
             this.panelTabs.SuspendLayout();
             this.tabInfo.SuspendLayout();
@@ -105,8 +107,10 @@
             this.tabNotas.SuspendLayout();
             this.tabRutaCarpetaTarea.SuspendLayout();
             this.CheckListTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridTareas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgItemsCheck)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridTareas)).BeginInit();
+            this.webViewTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.wvTiempo)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -159,6 +163,7 @@
             this.panelTabs.Controls.Add(this.tabNotas);
             this.panelTabs.Controls.Add(this.tabRutaCarpetaTarea);
             this.panelTabs.Controls.Add(this.CheckListTab);
+            this.panelTabs.Controls.Add(this.webViewTab);
             this.panelTabs.Location = new System.Drawing.Point(6, 112);
             this.panelTabs.Name = "panelTabs";
             this.panelTabs.SelectedIndex = 0;
@@ -466,6 +471,45 @@
             this.CheckListTab.Size = new System.Drawing.Size(529, 391);
             this.CheckListTab.TabIndex = 3;
             this.CheckListTab.Text = "Check List";
+            // 
+            // dtgItemsCheck
+            // 
+            this.dtgItemsCheck.AllowUserToAddRows = false;
+            this.dtgItemsCheck.AllowUserToDeleteRows = false;
+            this.dtgItemsCheck.AllowUserToResizeColumns = false;
+            this.dtgItemsCheck.AllowUserToResizeRows = false;
+            this.dtgItemsCheck.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.dtgItemsCheck.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgItemsCheck.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.chkItemMarcado,
+            this.CheckItemText});
+            this.dtgItemsCheck.Location = new System.Drawing.Point(10, 52);
+            this.dtgItemsCheck.MultiSelect = false;
+            this.dtgItemsCheck.Name = "dtgItemsCheck";
+            this.dtgItemsCheck.RowHeadersWidth = 5;
+            this.dtgItemsCheck.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dtgItemsCheck.Size = new System.Drawing.Size(513, 333);
+            this.dtgItemsCheck.TabIndex = 42;
+            this.ttControles.SetToolTip(this.dtgItemsCheck, "Se puede editar desde el grid");
+            this.dtgItemsCheck.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgItemsCheck_CellEndEdit);
+            this.dtgItemsCheck.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtgItemsCheck_KeyDown);
+            // 
+            // chkItemMarcado
+            // 
+            this.chkItemMarcado.DataPropertyName = "Marcada";
+            this.chkItemMarcado.HeaderText = "Check";
+            this.chkItemMarcado.Name = "chkItemMarcado";
+            this.chkItemMarcado.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.chkItemMarcado.Width = 50;
+            // 
+            // CheckItemText
+            // 
+            this.CheckItemText.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.CheckItemText.DataPropertyName = "Descripcion";
+            this.CheckItemText.HeaderText = "Descripción";
+            this.CheckItemText.Name = "CheckItemText";
+            this.CheckItemText.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CheckItemText.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // txtDescripcionCheckItem
             // 
@@ -840,44 +884,28 @@
             this.label21.TabIndex = 36;
             this.label21.Text = "F2: Configuración";
             // 
-            // dtgItemsCheck
+            // webViewTab
             // 
-            this.dtgItemsCheck.AllowUserToAddRows = false;
-            this.dtgItemsCheck.AllowUserToDeleteRows = false;
-            this.dtgItemsCheck.AllowUserToResizeColumns = false;
-            this.dtgItemsCheck.AllowUserToResizeRows = false;
-            this.dtgItemsCheck.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.dtgItemsCheck.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgItemsCheck.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.chkItemMarcado,
-            this.CheckItemText});
-            this.dtgItemsCheck.Location = new System.Drawing.Point(10, 52);
-            this.dtgItemsCheck.MultiSelect = false;
-            this.dtgItemsCheck.Name = "dtgItemsCheck";
-            this.dtgItemsCheck.RowHeadersWidth = 5;
-            this.dtgItemsCheck.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dtgItemsCheck.Size = new System.Drawing.Size(513, 333);
-            this.dtgItemsCheck.TabIndex = 42;
-            this.ttControles.SetToolTip(this.dtgItemsCheck, "Se puede editar desde el grid");
-            this.dtgItemsCheck.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgItemsCheck_CellEndEdit);
-            this.dtgItemsCheck.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtgItemsCheck_KeyDown);
+            this.webViewTab.Controls.Add(this.wvTiempo);
+            this.webViewTab.Location = new System.Drawing.Point(4, 22);
+            this.webViewTab.Name = "webViewTab";
+            this.webViewTab.Padding = new System.Windows.Forms.Padding(3);
+            this.webViewTab.Size = new System.Drawing.Size(529, 391);
+            this.webViewTab.TabIndex = 4;
+            this.webViewTab.Text = "Tiempo";
+            this.webViewTab.UseVisualStyleBackColor = true;
             // 
-            // chkItemMarcado
+            // wvTiempo
             // 
-            this.chkItemMarcado.DataPropertyName = "Marcada";
-            this.chkItemMarcado.HeaderText = "Check";
-            this.chkItemMarcado.Name = "chkItemMarcado";
-            this.chkItemMarcado.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.chkItemMarcado.Width = 50;
-            // 
-            // CheckItemText
-            // 
-            this.CheckItemText.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.CheckItemText.DataPropertyName = "Descripcion";
-            this.CheckItemText.HeaderText = "Descripción";
-            this.CheckItemText.Name = "CheckItemText";
-            this.CheckItemText.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.CheckItemText.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.wvTiempo.AllowExternalDrop = true;
+            this.wvTiempo.CreationProperties = null;
+            this.wvTiempo.DefaultBackgroundColor = System.Drawing.Color.White;
+            this.wvTiempo.Location = new System.Drawing.Point(0, 6);
+            this.wvTiempo.Name = "wvTiempo";
+            this.wvTiempo.Size = new System.Drawing.Size(526, 382);
+            this.wvTiempo.Source = new System.Uri("https://tracking-time-de979.firebaseapp.com", System.UriKind.Absolute);
+            this.wvTiempo.TabIndex = 0;
+            this.wvTiempo.ZoomFactor = 1D;
             // 
             // ControlTareasFrm
             // 
@@ -922,8 +950,10 @@
             this.tabRutaCarpetaTarea.PerformLayout();
             this.CheckListTab.ResumeLayout(false);
             this.CheckListTab.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridTareas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgItemsCheck)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridTareas)).EndInit();
+            this.webViewTab.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.wvTiempo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -998,6 +1028,8 @@
         private System.Windows.Forms.DataGridView dtgItemsCheck;
         private System.Windows.Forms.DataGridViewCheckBoxColumn chkItemMarcado;
         private System.Windows.Forms.DataGridViewTextBoxColumn CheckItemText;
+        private System.Windows.Forms.TabPage webViewTab;
+        private Microsoft.Web.WebView2.WinForms.WebView2 wvTiempo;
     }
 }
 
